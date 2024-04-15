@@ -18,6 +18,10 @@ book:
     - part: "Generating Random Numbers"
       chapters:
         - summary.qmd
+        
+  appendices: 
+    - howto.qmd
+  
   search: true
   repo-url: https://github.com/N-Leach/course_Computational-Statistics
   downloads: [pdf]

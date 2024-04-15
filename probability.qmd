@@ -6,6 +6,12 @@
 
 random variables (RV)
 
+```{webr-r}
+fit = lm(mpg ~ am, data = mtcars)
+
+summary(fit)
+```
+
 ## Discrete random variables
 
 $\Omega$ denotes the set of possible realizations of a random variable X ▶ X is called discrete if Ω is either 1. a finite set 2. a countably infinite set (e.g., N) ▶ If Ω isn't a 2countable set, X is continuous

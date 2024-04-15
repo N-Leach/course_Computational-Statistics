@@ -12,12 +12,12 @@
   {
     "objectID": "probability.html",
     "href": "probability.html",
-    "title": "1  Background",
+    "title": "1  Probability",
     "section": "",
-    "text": "1.1 Probability\ndd",
+    "text": "1.1 Discrete random variables\n\\(\\Omega\\) denotes the set of possible realizations of a random variable X ▶ X is called discrete if Ω is either 1. a finite set 2. a countably infinite set (e.g., N) ▶ If Ω isn’t a 2countable set, X is continuous",
     "crumbs": [
       "Background",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Background</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability</span>"
     ]
   },
   {
@@ -29,6 +29,50 @@
     "crumbs": [
       "Generating Random Numbers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "howto.html",
+    "href": "howto.html",
+    "title": "Appendix A — How I made this",
+    "section": "",
+    "text": "A.1 Github\nhttps://happygitwithr.com/",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
+    ]
+  },
+  {
+    "objectID": "howto.html#git-website",
+    "href": "howto.html#git-website",
+    "title": "Appendix A — How I made this",
+    "section": "A.2 git website",
+    "text": "A.2 git website\nhttps://www.codecademy.com/article/creating-a-website-on-github-pages",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
+    ]
+  },
+  {
+    "objectID": "howto.html#quarto-webr",
+    "href": "howto.html#quarto-webr",
+    "title": "Appendix A — How I made this",
+    "section": "A.3 quarto-webr",
+    "text": "A.3 quarto-webr\nhttps://quarto-webr.thecoatlessprofessor.com/",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
+    ]
+  },
+  {
+    "objectID": "howto.html#inspiration",
+    "href": "howto.html#inspiration",
+    "title": "Appendix A — How I made this",
+    "section": "A.4 Inspiration",
+    "text": "A.4 Inspiration\nhttps://dkon1.github.io/quant_life_quarto/tutorial3.html",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
     ]
   }
 ]
