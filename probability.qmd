@@ -1,9 +1,11 @@
-# Introduction
+# Probability
 
-This is a book created from markdown and executable code.
+-   Set Theory
 
-See @knuth84 for additional discussion of literate programming.
+-   random numbers
 
-```{r}
-1 + 1
-```
+random variables (RV)
+
+## Discrete random variables
+
+$\Omega$ denotes the set of possible realizations of a random variable X ▶ X is called discrete if Ω is either 1. a finite set 2. a countably infinite set (e.g., N) ▶ If Ω isn't a 2countable set, X is continuous

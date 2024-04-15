@@ -1,0 +1,17 @@
+# How I made this 
+
+## Github
+
+https://happygitwithr.com/
+
+## git website 
+
+https://www.codecademy.com/article/creating-a-website-on-github-pages
+
+## **quarto-webr**
+
+https://quarto-webr.thecoatlessprofessor.com/
+
+## Inspiration 
+
+https://dkon1.github.io/quant_life_quarto/tutorial3.html
