@@ -9,8 +9,12 @@ webr:
 book:
   title: "Computational-Statistics"
   author: "Nina Leach"
+  
   chapters:
     - index.qmd
+    - part: "Background"
+      chapters: 
+        - robability.qmd
     - intro.qmd
     - summary.qmd
   
