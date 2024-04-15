@@ -273,7 +273,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"message":"true","autorun":"false","comment":"","label":"unnamed-chunk-1","editor-max-height":"","read-only":"false","dpi":72,"out-width":"700px","classes":"","fig-cap":"","results":"markup","context":"interactive","out-height":"","warning":"true","fig-height":5,"editor-quick-suggestions":"false","fig-width":7,"editor-font-scale":1,"output":"true"},"id":1,"code":"fit = lm(mpg ~ am, data = mtcars)\n\nsummary(fit)"}];
+globalThis.qwebrCellDetails = [{"options":{"autorun":"false","context":"interactive","results":"markup","label":"unnamed-chunk-1","out-height":"","fig-cap":"","editor-max-height":"","read-only":"false","editor-quick-suggestions":"false","fig-width":7,"editor-font-scale":1,"message":"true","output":"true","dpi":72,"fig-height":5,"classes":"","warning":"true","out-width":"700px","comment":""},"code":"n = 5; p = 0.5\nomega = 0:n\npmf = dbinom(x = omega, size = n, prob = p)\nbin.distr = data.frame(x = omega, pmf)\nbin.distr","id":1}];
 
 </script>
 <script type="module">
@@ -1247,7 +1247,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#discrete-random-variables" id="toc-discrete-random-variables" class="nav-link active" data-scroll-target="#discrete-random-variables"><span class="header-section-number">1.1</span> Discrete random variables</a></li>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables"><span class="header-section-number">1.1</span> Random Variables</a></li>
+  <li><a href="#discrete-random-variables" id="toc-discrete-random-variables" class="nav-link" data-scroll-target="#discrete-random-variables"><span class="header-section-number">1.2</span> Discrete random variables</a>
+  <ul class="collapse">
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">1.2.1</span> Examples</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1501,17 +1505,57 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 
 <ul>
-<li><p>Set Theory</p></li>
-<li><p>random numbers</p></li>
+<li>Set Theory</li>
 </ul>
-<p>random variables (RV)</p>
+<section id="random-variables" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">1.1</span> Random Variables</h2>
+<p>A random experiment is a procedure where uncertain events are observed. An <strong>outcome</strong> is the result of such an experiment, and the collection of all possible outcomes is called the <strong>sample space</strong> <span class="math inline">\(\Omega\)</span>. For example:</p>
+<ul>
+<li><p>a coin toss: <span class="math inline">\(\Omega = \{heads,tails\}\)</span></p></li>
+<li><p>roll a 6 sided die: <span class="math inline">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span></p></li>
+<li><p>number of rainy days in June: <span class="math inline">\(\Omega = \{0, 1, ..., 30\}\)</span></p></li>
+</ul>
+<p>Repetitions of a random experiment is known as a <strong>trial.</strong> If a coin is tossed twice <span class="math inline">\(\Omega = \{(H, H), (T, H), (H, T), (T, T)\}\)</span>.</p>
+<p>An <strong>event</strong> is a subset of the sample space.</p>
+<p>The numerical results of an a random experiment are <strong>random variables</strong>.</p>
+</section>
+<section id="discrete-random-variables" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="discrete-random-variables"><span class="header-section-number">1.2</span> Discrete random variables</h2>
+<p>A random variable X is called discrete if:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\Omega\)</span> is a finite set. Meaning: …</p></li>
+<li><p>a countably infinite set (e.g., N)</p></li>
+</ol>
+<p>If <span class="math inline">\(\Omega\)</span> isn’t a countable set, X is continuous</p>
+<p>pdf/ cdf here</p>
+<section id="examples" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="examples"><span class="header-section-number">1.2.1</span> Examples</h3>
+<section id="uniform-distribution" class="level4" data-number="1.2.1.1">
+<h4 data-number="1.2.1.1" class="anchored" data-anchor-id="uniform-distribution"><span class="header-section-number">1.2.1.1</span> Uniform Distribution</h4>
+</section>
+<section id="bernoulli-distribution" class="level4" data-number="1.2.1.2">
+<h4 data-number="1.2.1.2" class="anchored" data-anchor-id="bernoulli-distribution"><span class="header-section-number">1.2.1.2</span> Bernoulli Distribution</h4>
+</section>
+<section id="binomial-distribution" class="level4" data-number="1.2.1.3">
+<h4 data-number="1.2.1.3" class="anchored" data-anchor-id="binomial-distribution"><span class="header-section-number">1.2.1.3</span> Binomial distribution</h4>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<section id="discrete-random-variables" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="discrete-random-variables"><span class="header-section-number">1.1</span> Discrete random variables</h2>
-<p><span class="math inline">\(\Omega\)</span> denotes the set of possible realizations of a random variable X ▶ X is called discrete if Ω is either 1. a finite set 2. a countably infinite set (e.g., N) ▶ If Ω isn’t a 2countable set, X is continuous</p>
+</section>
+<section id="poisson-distribution" class="level4" data-number="1.2.1.4">
+<h4 data-number="1.2.1.4" class="anchored" data-anchor-id="poisson-distribution"><span class="header-section-number">1.2.1.4</span> <strong>Poisson Distribution</strong></h4>
+</section>
+<section id="geometric-distribution" class="level4" data-number="1.2.1.5">
+<h4 data-number="1.2.1.5" class="anchored" data-anchor-id="geometric-distribution"><span class="header-section-number">1.2.1.5</span> Geometric Distribution</h4>
+</section>
+<section id="negative-binomial-pascal-distribution" class="level4" data-number="1.2.1.6">
+<h4 data-number="1.2.1.6" class="anchored" data-anchor-id="negative-binomial-pascal-distribution"><span class="header-section-number">1.2.1.6</span> Negative Binomial (Pascal) Distribution</h4>
+</section>
+<section id="hypergeometric-distribution" class="level4" data-number="1.2.1.7">
+<h4 data-number="1.2.1.7" class="anchored" data-anchor-id="hypergeometric-distribution"><span class="header-section-number">1.2.1.7</span> Hypergeometric Distribution</h4>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

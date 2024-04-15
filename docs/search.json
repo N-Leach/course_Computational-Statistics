@@ -14,7 +14,7 @@
     "href": "probability.html",
     "title": "1  Probability",
     "section": "",
-    "text": "1.1 Discrete random variables\n\\(\\Omega\\) denotes the set of possible realizations of a random variable X ▶ X is called discrete if Ω is either 1. a finite set 2. a countably infinite set (e.g., N) ▶ If Ω isn’t a 2countable set, X is continuous",
+    "text": "1.1 Random Variables\nA random experiment is a procedure where uncertain events are observed. An outcome is the result of such an experiment, and the collection of all possible outcomes is called the sample space \\(\\Omega\\). For example:\nRepetitions of a random experiment is known as a trial. If a coin is tossed twice \\(\\Omega = \\{(H, H), (T, H), (H, T), (T, T)\\}\\).\nAn event is a subset of the sample space.\nThe numerical results of an a random experiment are random variables.",
     "crumbs": [
       "Background",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability</span>"
@@ -73,6 +73,28 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
+    ]
+  },
+  {
+    "objectID": "probability.html#random-variables",
+    "href": "probability.html#random-variables",
+    "title": "1  Probability",
+    "section": "",
+    "text": "a coin toss: \\(\\Omega = \\{heads,tails\\}\\)\nroll a 6 sided die: \\(\\Omega = \\{1, 2, 3, 4, 5, 6\\}\\)\nnumber of rainy days in June: \\(\\Omega = \\{0, 1, ..., 30\\}\\)",
+    "crumbs": [
+      "Background",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability</span>"
+    ]
+  },
+  {
+    "objectID": "probability.html#discrete-random-variables",
+    "href": "probability.html#discrete-random-variables",
+    "title": "1  Probability",
+    "section": "1.2 Discrete random variables",
+    "text": "1.2 Discrete random variables\nA random variable X is called discrete if:\n\n\\(\\Omega\\) is a finite set. Meaning: …\na countably infinite set (e.g., N)\n\nIf \\(\\Omega\\) isn’t a countable set, X is continuous\npdf/ cdf here\n\n1.2.1 Examples\n\n1.2.1.1 Uniform Distribution\n\n\n1.2.1.2 Bernoulli Distribution\n\n\n1.2.1.3 Binomial distribution\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n1.2.1.4 Poisson Distribution\n\n\n1.2.1.5 Geometric Distribution\n\n\n1.2.1.6 Negative Binomial (Pascal) Distribution\n\n\n1.2.1.7 Hypergeometric Distribution",
+    "crumbs": [
+      "Background",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability</span>"
     ]
   }
 ]

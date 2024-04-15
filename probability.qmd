@@ -2,16 +2,54 @@
 
 -   Set Theory
 
--   random numbers
+## Random Variables
 
-random variables (RV)
+A random experiment is a procedure where uncertain events are observed. An **outcome** is the result of such an experiment, and the collection of all possible outcomes is called the **sample space** $\Omega$. For example:
 
-```{webr-r}
-fit = lm(mpg ~ am, data = mtcars)
+-   a coin toss: $\Omega = \{heads,tails\}$
 
-summary(fit)
-```
+-   roll a 6 sided die: $\Omega = \{1, 2, 3, 4, 5, 6\}$
+
+-   number of rainy days in June: $\Omega = \{0, 1, ..., 30\}$
+
+Repetitions of a random experiment is known as a **trial.** If a coin is tossed twice $\Omega = \{(H, H), (T, H), (H, T), (T, T)\}$.
+
+An **event** is a subset of the sample space.
+
+The numerical results of an a random experiment are **random variables**.
 
 ## Discrete random variables
 
-$\Omega$ denotes the set of possible realizations of a random variable X ▶ X is called discrete if Ω is either 1. a finite set 2. a countably infinite set (e.g., N) ▶ If Ω isn't a 2countable set, X is continuous
+A random variable X is called discrete if:
+
+1.  $\Omega$ is a finite set. Meaning: ...
+
+2.  a countably infinite set (e.g., N)
+
+If $\Omega$ isn't a countable set, X is continuous
+
+pdf/ cdf here
+
+### Examples
+
+#### Uniform Distribution
+
+#### Bernoulli Distribution
+
+#### Binomial distribution
+
+``` {webr-r}
+n = 5; p = 0.5
+omega = 0:n
+pmf = dbinom(x = omega, size = n, prob = p)
+bin.distr = data.frame(x = omega, pmf)
+bin.distr
+```
+
+#### **Poisson Distribution**
+
+#### Geometric Distribution
+
+#### Negative Binomial (Pascal) Distribution
+
+#### Hypergeometric Distribution
