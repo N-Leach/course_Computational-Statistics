@@ -4,7 +4,7 @@ project:
 filters:
   - webr
 webr:
-  packages: ['palmerpenguins', "HistData"]
+  packages: ['palmerpenguins']
 
 book:
   title: "Computational-Statistics"
@@ -14,10 +14,10 @@ book:
     - index.qmd
     - part: "Background"
       chapters: 
-        - robability.qmd
-    - intro.qmd
-    - summary.qmd
-  
+        - probability.qmd
+    - part: "Generating Random Numbers"
+      chapters:
+        - summary.qmd
   search: true
   repo-url: https://github.com/N-Leach/course_Computational-Statistics
   downloads: [pdf]
