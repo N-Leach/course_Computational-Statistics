@@ -1,3 +1,5 @@
-# course_Computational-Statistics
+# Computational Statistics
 
-somrthing something
+## Leiden University Course 
+
+My notes and working through the course.
