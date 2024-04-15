@@ -4,15 +4,20 @@ project:
 filters:
   - webr
 webr:
-  packages: ['palmerpenguins', "HistData"]
+  packages: ['palmerpenguins']
 
 book:
   title: "Computational-Statistics"
   author: "Nina Leach"
+  
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: "Background"
+      chapters: 
+        - probability.qmd
+    - part: "Generating Random Numbers"
+      chapters:
+        - summary.qmd
   
   search: true
   repo-url: https://github.com/N-Leach/course_Computational-Statistics
