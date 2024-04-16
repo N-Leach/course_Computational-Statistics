@@ -12,23 +12,43 @@
   {
     "objectID": "probability.html",
     "href": "probability.html",
-    "title": "1  Probability",
+    "title": "Probability",
     "section": "",
-    "text": "1.1 Random Variables\nA random experiment is a procedure where uncertain events are observed. An outcome is the result of such an experiment, and the collection of all possible outcomes is called the sample space \\(S\\). For example:\nRepetitions of a random experiment is known as a trial. If a coin is tossed twice \\(S = \\{(H, H), (T, H), (H, T), (T, T)\\}\\).\nAn event is a subset of the sample space.\nThe numerical results of an a random experiment are random variables(RV). For the example of a coin tossed twice, numeral values can be assigned to each outcome: \\((H, H) = 0, (T, H) = 1, ...\\)\nThe set of possible values for random variable \\(X\\) is denoted by \\(Range(X)\\), \\(R_X\\), \\(\\Omega\\).",
+    "text": "Random Variables\nA random experiment is a procedure where uncertain events are observed. An outcome is the result of such an experiment, and the collection of all possible outcomes is called the sample space \\(S\\). For example:\nRepetitions of a random experiment is known as a trial. If a coin is tossed twice \\(S = \\{(H, H), (T, H), (H, T), (T, T)\\}\\).\nAn event is a subset of the sample space.\nThe numerical results of an a random experiment are random variables(RV). For the example of a coin tossed twice, numeral values can be assigned to each outcome: \\((H, H) = 0, (T, H) = 1, ...\\)\nThe set of possible values for random variable \\(X\\) is denoted by \\(Range(X)\\), \\(R_X\\), \\(\\Omega\\).",
     "crumbs": [
-      "Background",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability</span>"
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "probability.html#random-variables",
+    "href": "probability.html#random-variables",
+    "title": "Probability",
+    "section": "",
+    "text": "a coin toss: \\(S = \\{heads,tails\\}\\)\nroll a 6 sided die (D6): \\(S = \\{1, 2, 3, 4, 5, 6\\}\\)\nnumber of rainy days in June: \\(S = \\{0, 1, ..., 30\\}\\)\n\n\n\n\n\n\nI roll a D6 10 times. Let X be the number of 1’s observed. Then \\(R_X = \\{0, 1, ..., 10\\}\\)\nHow many attempts it takes for Manchester United (F.C.) defense to tighten up. Let Y represent the total number of games before they manage to keep a clean sheet. Then \\(R_Y = \\{ 1,2, ...\\} = \\mathbb{N}\\) i.e. Y can be any positive integer.\nThe random variable T is the time (in hours) from now until the next earthquake occurs. This can be any non negative real number \\(R_T = [0, \\infty)\\)",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "discreteRV.html",
+    "href": "discreteRV.html",
+    "title": "Discrete random variables",
+    "section": "",
+    "text": "A random variable X is called discrete if:\n\n\\(\\Omega\\) is a finite set. E.g. \\(\\Omega_X = \\{1, 2, 3, 4\\}\\).\na countably infinite set. E.g.:\n\nNatural numbers \\(\\mathbb{N} = \\{1, 2, 3, ...\\}\\),\nIntegers \\(\\mathbb{Z} = \\{..., -1, 0, 1,...\\}\\),\nRational number, \\(\\mathbb{Q}\\) (number that can be expressed as a fraction), etc..\n\n\nIf \\(\\Omega\\) isn’t a countable set, X is continuous.\n\nDefinitions explained through an example\nIf a coin is tossed four times:\n\nThe sample space (S) —the list of all (\\(2^4\\)) possible outcomes— is \\(S = \\{(H, H, H, H), (H, H, H, T), ....\\}\\).\nWe define the RV, \\(X\\), as the number of heads that come up in the four coin tosses. Then the range of X is \\(\\Omega_X = \\{x_1 = 0, x_2 = 1,..., x_5= 4\\}\\).\nAn event defined as the set of outcomes s in the sample space S. For example an event, A, could be “getting exactly 2 heads”. Then A would include all outcomes from the sample space where there are 2 heads, e.g.: \\((HHTT), (HTHT),\\) etc. In general terms \\(A=\\{s∈S|X(s)=x_k\\}\\)\nProbabilities of events \\(\\{X=x_k\\}\\) are formally shown by the probability mass function (pmf) of \\(X\\), i.e. showing the probability of each value of \\(\\Omega_X\\): \\(P(X=0), ..., P(X=4)\\). Formally, the pmf: \\(f_X(x_k) = P(X=x_k)\\).\n\n\n\n\n\n\n\n\n\nFigure 1.1: e.g. P(X = 1): The probability of getting 1 head (HTTT, THTT, TTHT, TTTH) = 4/(2^4) = 0.25.\n\n\n\n\n\n\nTo be a pmf, \\(f_X\\) must have the following properties:\n\n\\(f_X \\ge 0\\) for \\(x \\in \\Omega\\). i.e \\(P(X =x_k) &lt; 0\\)\n\\(\\Sigma_{x \\in \\Omega} f_X = 1\\)\n\nFrom our example, for in each case \\(f_X \\ge 0\\) and the sum is 1\n\n\n\n\n\n\nNumber_of_Heads\nProbability\n\n\n\n\n0\n0.0625\n\n\n1\n0.2500\n\n\n2\n0.3750\n\n\n3\n0.2500\n\n\n4\n0.0625\n\n\n\n\n\n\n\n\nThe cumulative distribution function (cdf) \\(F_X(x) = P(X ≤ x)\\)\n\n\n\n\n\n\n\n\n\nFigure 1.2\n\n\n\n\n\n\nThe cdf is a non-decreasing function for which \\[\\lim_{x\\to - \\infty} F_X(x) = 0 \\text{  and } \\lim_{x\\to \\infty} F_X(x) =1 \\]\nexpected value \\[E(X) = \\sum_{x=\\Omega} xf_X(x)\\]\nvariance \\[Var(X) = E[(X-E(X))^2]\\]\n\n\n\nExamples\n\nUniform Distribution\n\n\nBernoulli Distribution\n\n\nBinomial distribution\n(example from Lecture 1):\nLet \\(Y \\in \\{ 0,1\\}\\) denote the outcome of a binary experiment. Where a success (y=1) has probability \\(p \\in(0,1)\\), and failure (y=0) probability \\(1-p\\).\nThe binomial distribution \\(X = \\sum_{i=1}^{n} Y_i\\) counts the number of successes \\(X\\) out of \\(n\\) independent Bernoulli trials \\(Y_1, Y_2, ..., Y_n\\):\n\\[\nf_X(x) = \\binom{n}{x} p^x(1 - p)^{n-x}, \\quad x = 0, 1,…, n\n\\]\n\\(E(X) = np\\)\n\\(Var(X) = np(1 - p)\\)\nIn R:\n\nset.seed(123)\nn = 7; p = 0.4\nomega = 0:n\npmf = dbinom(x = omega, size = n, prob = p)\nbin.distr = data.frame(x = omega, pmf)\nbin.distr\n\n  x       pmf\n1 0 0.0279936\n2 1 0.1306368\n3 2 0.2612736\n4 3 0.2903040\n5 4 0.1935360\n6 5 0.0774144\n7 6 0.0172032\n8 7 0.0016384\n\n\nTo compute the cdf\n\n# option 1\ncdf1 = pbinom(q = omega, size = n, prob = p)\n\n# option 2\ncdf2 = cumsum(pmf)\n\nall(round(cdf1, 10) == round(cdf2, 10))\n\n[1] TRUE\n\n\nBoth options the same till 10 d.p.\nplot(bin.distr, pch = 16, bty = \"l\", col = 'steelblue2',\nmain = 'Probability mass function')\n\nplot(omega, cdf1, type = 's', bty = \"l\",\nxlab = 'x', ylab = 'cumulative probability',\ncol = 'steelblue2', lwd = 2,\nmain = 'Cumulative distribution function')\nabline(h = 1, lty = 2)\n\n\n\n\n\n\n\n\n\nFigure 1.3: Corresponding PMF and CDF\n\n\n\n\n\n\n\n\n\n\n\nFigure 1.4: Corresponding PMF and CDF\n\n\n\n\n\n\n\n\nPoisson Distribution\n\n\nGeometric Distribution\n\n\nNegative Binomial (Pascal) Distribution\n\n\nHypergeometric Distribution",
+    "crumbs": [
+      "Probability",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Discrete random variables</span>"
     ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "Summary",
     "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "text": "In summary, this book has no content whatsoever.\n\n\n[1] 2",
     "crumbs": [
       "Generating Random Numbers",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
@@ -36,7 +56,7 @@
     "href": "howto.html",
     "title": "Appendix A — How I made this",
     "section": "",
-    "text": "A.1 Github\nhttps://happygitwithr.com/",
+    "text": "Github\nhttps://happygitwithr.com/",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
@@ -46,8 +66,8 @@
     "objectID": "howto.html#git-website",
     "href": "howto.html#git-website",
     "title": "Appendix A — How I made this",
-    "section": "A.2 git website",
-    "text": "A.2 git website\nhttps://www.codecademy.com/article/creating-a-website-on-github-pages",
+    "section": "git website",
+    "text": "git website\nhttps://www.codecademy.com/article/creating-a-website-on-github-pages",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
@@ -57,8 +77,8 @@
     "objectID": "howto.html#quarto-webr",
     "href": "howto.html#quarto-webr",
     "title": "Appendix A — How I made this",
-    "section": "A.3 quarto-webr",
-    "text": "A.3 quarto-webr\nhttps://quarto-webr.thecoatlessprofessor.com/",
+    "section": "quarto-webr",
+    "text": "quarto-webr\nhttps://quarto-webr.thecoatlessprofessor.com/",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
@@ -68,33 +88,11 @@
     "objectID": "howto.html#inspiration",
     "href": "howto.html#inspiration",
     "title": "Appendix A — How I made this",
-    "section": "A.4 Inspiration",
-    "text": "A.4 Inspiration\nhttps://dkon1.github.io/quant_life_quarto/tutorial3.html",
+    "section": "Inspiration",
+    "text": "Inspiration\nhttps://dkon1.github.io/quant_life_quarto/tutorial3.html",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>How I made this</span>"
-    ]
-  },
-  {
-    "objectID": "probability.html#random-variables",
-    "href": "probability.html#random-variables",
-    "title": "1  Probability",
-    "section": "",
-    "text": "a coin toss: \\(S = \\{heads,tails\\}\\)\nroll a 6 sided die (D6): \\(S = \\{1, 2, 3, 4, 5, 6\\}\\)\nnumber of rainy days in June: \\(S = \\{0, 1, ..., 30\\}\\)\n\n\n\n\n\n\nI roll a D6 10 times. Let X be the number of 1’s observed. Then \\(R_X = \\{0, 1, ..., 10\\}\\)\nHow many attempts it takes for Manchester United (F.C.) defense to tighten up. Let Y represent the total number of games before they manage to keep a clean sheet. Then \\(R_Y = \\{ 1,2, ...\\} = \\mathbb{N}\\) i.e. Y can be any positive integer.\nThe random variable T is the time (in hours) from now until the next earthquake occurs. This can be any non negative real number \\(R_T = [0, \\infty)\\)",
-    "crumbs": [
-      "Background",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability</span>"
-    ]
-  },
-  {
-    "objectID": "probability.html#discrete-random-variables",
-    "href": "probability.html#discrete-random-variables",
-    "title": "1  Probability",
-    "section": "1.2 Discrete random variables",
-    "text": "1.2 Discrete random variables\nA random variable X is called discrete if:\n\n\\(\\Omega\\) is a finite set. E.g. \\(\\Omega_X = \\{1, 2, 3, 4\\}\\).\na countably infinite set. E.g.:\n\nNatural numbers \\(\\mathbb{N} = \\{1, 2, 3, ...\\}\\),\nIntegers \\(\\mathbb{Z} = \\{..., -1, 0, 1,...\\}\\),\nRational number, \\(\\mathbb{Q}\\) (number that can be expressed as a fraction), etc..\n\n\nIf \\(\\Omega\\) isn’t a countable set, X is continuous.\n\n1.2.1 Definitions explained through an example\nIf a coin is tossed four times:\n\nThe sample space (S) —the list of all (\\(2^4\\)) possible outcomes— is \\(S = \\{(H, H, H, H), (H, H, H, T), ....\\}\\).\nWe define the RV, \\(X\\), as the number of heads that come up in the four coin tosses. Then the range of X is \\(\\Omega_X = \\{x_1 = 0, x_2 = 1,..., x_5= 4\\}\\).\nAn event defined as the set of outcomes s in the sample space S. For example an event, A, could be “getting exactly 2 heads”. Then A would include all outcomes from the sample space where there are 2 heads, e.g.: \\((HHTT), (HTHT),\\) etc. In general terms \\(A=\\{s∈S|X(s)=x_k\\}\\)\nProbabilities of events \\(\\{X=x_k\\}\\) are formally shown by the probability mass function (pmf) of \\(X\\), i.e. showing the probability of each value of \\(\\Omega_X\\): \\(P(X=0), ..., P(X=4)\\). Formally, the pmf: \\(f_X(x_k) = P(X=x_k)\\).\n\n\n\n\n\n\n\n\n\n\n\nTo be a pmf, \\(f_X\\) must satisfy:\n\n\\(f_X \\ge 0\\) for \\(x \\in \\Omega\\). i.e \\(P(X =x_k) &lt; 0\\)\n\\(\\Sigma_{x \\in \\Omega} f_X = 1\\)\n\nFrom our example, for in each case \\(f_X \\ge 0\\) and the sum is 1\n\n\n\n\n\n\nNumber_of_Heads\nProbability\n\n\n\n\n0\n0.0625\n\n\n1\n0.2500\n\n\n2\n0.3750\n\n\n3\n0.2500\n\n\n4\n0.0625\n\n\n\n\n\n\n\n\nThe cumulative distribution function (cdf)\n\n\n\n1.2.2 Examples\n\n1.2.2.1 Uniform Distribution\n\n\n1.2.2.2 Bernoulli Distribution\n\n\n1.2.2.3 Binomial distribution\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n1.2.2.4 Poisson Distribution\n\n\n1.2.2.5 Geometric Distribution\n\n\n1.2.2.6 Negative Binomial (Pascal) Distribution\n\n\n1.2.2.7 Hypergeometric Distribution",
-    "crumbs": [
-      "Background",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability</span>"
     ]
   }
 ]

@@ -12,9 +12,10 @@ book:
   
   chapters:
     - index.qmd
-    - part: "Background"
+    - part: probability.qmd
       chapters: 
-        - probability.qmd
+        - discreteRV.qmd
+        - contRV.qmd
     - part: "Generating Random Numbers"
       chapters:
         - summary.qmd
@@ -26,13 +27,15 @@ book:
   repo-url: https://github.com/N-Leach/course_Computational-Statistics
   downloads: [pdf]
 
-#bibliography: references.bib
+bibliography: references.bib
+
+execute: 
+  echo: false
 
 format:
   html:
-    theme: materia
-    toc: true
-    toc-depth: 2
+    theme: minty
+    number-sections: false
   pdf:
     documentclass: scrreprt
 

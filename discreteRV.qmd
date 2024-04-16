@@ -1,0 +1,149 @@
+# Discrete random variables
+
+A random variable X is called discrete if:
+
+1.  $\Omega$ is a finite set. E.g. $\Omega_X = \{1, 2, 3, 4\}$.
+
+2.  a countably infinite set. E.g.:
+
+    -   Natural numbers $\mathbb{N} = \{1, 2, 3, ...\}$,
+
+    -   Integers $\mathbb{Z} = \{..., -1, 0, 1,...\}$,
+
+    -   **Rational number**, $\mathbb{Q}$ (number that can be expressed as a fraction), etc..
+
+If $\Omega$ isn't a countable set, X is continuous.
+
+### Definitions explained through an example
+
+If a coin is tossed four times:
+
+-   The sample space (S) ---the list of all ($2^4$) possible outcomes--- is $S = \{(H, H, H, H), (H, H, H, T), ....\}$.
+
+-   We define the RV, $X$, as the number of heads that come up in the four coin tosses. Then the range of X is $\Omega_X = \{x_1 = 0, x_2 = 1,..., x_5= 4\}$.
+
+-   An **event** defined as the set of outcomes ***s*** in the sample space ***S***. For example an event, **A**, could be "getting exactly 2 heads". Then **A** would include all outcomes from the sample space where there are 2 heads, e.g.: $(HHTT), (HTHT),$ etc. In general terms $A=\{s∈S|X(s)=x_k\}$
+
+-   Probabilities of events $\{X=x_k\}$ are formally shown by the probability mass function (**pmf**) of $X$, i.e. showing the probability of each value of $\Omega_X$: $P(X=0), ..., P(X=4)$. Formally, the **pmf**: $f_X(x_k) = P(X=x_k)$.
+
+```{r}
+#| label: fig-coin_pmf1
+#| fig-cap: "e.g. P(X = 1): The probability of getting 1 head (HTTT, THTT, TTHT, TTTH) = 4/(2^4) = 0.25." 
+
+# number of trials (n) 
+n <- 4
+# probability of success (p) for a fair coin
+p <- 0.5
+
+# possible number of heads (x) and the corresponding probabilities (pmf)
+coin_tosses <- data.frame(Number_of_Heads = 0:n,
+                          Probability = dbinom(0:n, size = n, prob = p))
+
+# PMF plot 
+plot(coin_tosses$Number_of_Heads, coin_tosses$Probability, 
+     type = "h", lwd = 3, 
+     xlab = "x", ylab = "probability", 
+     main = "Probability Mass Function (PMF)")
+
+```
+
+-   To be a pmf, $f_X$ must have the following properties:
+
+    -   $f_X \ge 0$ for $x \in \Omega$. i.e $P(X =x_k) < 0$
+
+    -   $\Sigma_{x \in \Omega} f_X = 1$
+
+    From our example, for in each case $f_X \ge 0$ and the sum is `r sum(coin_tosses$Probability)`
+
+```{r}
+kableExtra::kable(coin_tosses)
+```
+
+-   The **cumulative distribution function (cdf)** $F_X(x) = P(X ≤ x)$
+
+```{r}
+#| label: fig-coin_cdf
+coin_tosses$cdf <- cumsum(coin_tosses$Probability)
+
+plot(coin_tosses$Number_of_Heads, coin_tosses$cdf, 
+     type = 's', bty = "l", 
+     xlab = 'x', ylab = 'cumulative probability',
+     main = 'Cumulative distribution function (CDF)')
+abline(h = 1, lty = 2)
+```
+
+-   The cdf is a non-decreasing function for which $$\lim_{x\to - \infty} F_X(x) = 0 \text{  and } \lim_{x\to \infty} F_X(x) =1 $$
+-   **expected value** $$E(X) = \sum_{x=\Omega} xf_X(x)$$
+-   **variance** $$Var(X) = E[(X-E(X))^2]$$
+
+### Examples
+
+#### Uniform Distribution
+
+#### Bernoulli Distribution
+
+#### Binomial distribution
+
+(example from Lecture 1):
+
+Let $Y \in \{ 0,1\}$ denote the outcome of a binary experiment. Where a success (y=1) has probability $p \in(0,1)$, and failure (y=0) probability $1-p$.
+
+The binomial distribution $X = \sum_{i=1}^{n} Y_i$ counts the number of successes $X$ out of $n$ independent Bernoulli trials $Y_1, Y_2, ..., Y_n$:
+
+$$
+f_X(x) = \binom{n}{x} p^x(1 - p)^{n-x}, \quad x = 0, 1,…, n 
+$$
+
+$E(X) = np$
+
+$Var(X) = np(1 - p)$
+
+In R:
+
+```{r, echo = TRUE}
+set.seed(123)
+n = 7; p = 0.4
+omega = 0:n
+pmf = dbinom(x = omega, size = n, prob = p)
+bin.distr = data.frame(x = omega, pmf)
+bin.distr
+```
+
+To compute the cdf
+
+```{r, echo = TRUE}
+# option 1
+cdf1 = pbinom(q = omega, size = n, prob = p)
+
+# option 2
+cdf2 = cumsum(pmf)
+
+all(round(cdf1, 10) == round(cdf2, 10))
+```
+
+Both options the same till 10 d.p.
+
+```{r, echo=TRUE}
+#| label: fig-bin.dist
+#| fig-cap: Corresponding PMF and CDF
+#| layout-ncol: 2
+
+plot(bin.distr, pch = 16, bty = "l", col = 'steelblue2',
+main = 'Probability mass function')
+
+plot(omega, cdf1, type = 's', bty = "l",
+xlab = 'x', ylab = 'cumulative probability',
+col = 'steelblue2', lwd = 2,
+main = 'Cumulative distribution function')
+abline(h = 1, lty = 2)
+```
+
+#### Poisson Distribution
+
+#### Geometric Distribution
+
+#### Negative Binomial (Pascal) Distribution
+
+#### Hypergeometric Distribution
+
+# 

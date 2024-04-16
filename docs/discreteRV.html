@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Computational-Statistics - Summary</title>
+<title>Computational-Statistics - Discrete random variables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./howto.html" rel="next">
-<link href="./contRV.html" rel="prev">
+<link href="./contRV.html" rel="next">
+<link href="./probability.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html">Generating Random Numbers</a></li><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability.html">Probability</a></li><li class="breadcrumb-item"><a href="./discreteRV.html"><span class="chapter-title">Discrete random variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discreteRV.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Discrete random variables</span></a>
+  <a href="./discreteRV.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Discrete random variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -148,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Summary</span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
   </div>
 </li>
       </ul>
@@ -175,14 +238,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#definitions-explained-through-an-example" id="toc-definitions-explained-through-an-example" class="nav-link active" data-scroll-target="#definitions-explained-through-an-example">Definitions explained through an example</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html">Generating Random Numbers</a></li><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-title">Summary</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability.html">Probability</a></li><li class="breadcrumb-item"><a href="./discreteRV.html"><span class="chapter-title">Discrete random variables</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-title">Discrete random variables</span></h1>
 </div>
 
 
@@ -199,14 +270,214 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary, this book has no content whatsoever.</p>
+<p>A random variable X is called discrete if:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\Omega\)</span> is a finite set. E.g. <span class="math inline">\(\Omega_X = \{1, 2, 3, 4\}\)</span>.</p></li>
+<li><p>a countably infinite set. E.g.:</p>
+<ul>
+<li><p>Natural numbers <span class="math inline">\(\mathbb{N} = \{1, 2, 3, ...\}\)</span>,</p></li>
+<li><p>Integers <span class="math inline">\(\mathbb{Z} = \{..., -1, 0, 1,...\}\)</span>,</p></li>
+<li><p><strong>Rational number</strong>, <span class="math inline">\(\mathbb{Q}\)</span> (number that can be expressed as a fraction), etc..</p></li>
+</ul></li>
+</ol>
+<p>If <span class="math inline">\(\Omega\)</span> isn’t a countable set, X is continuous.</p>
+<section id="definitions-explained-through-an-example" class="level3">
+<h3 class="anchored" data-anchor-id="definitions-explained-through-an-example">Definitions explained through an example</h3>
+<p>If a coin is tossed four times:</p>
+<ul>
+<li><p>The sample space (S) —the list of all (<span class="math inline">\(2^4\)</span>) possible outcomes— is <span class="math inline">\(S = \{(H, H, H, H), (H, H, H, T), ....\}\)</span>.</p></li>
+<li><p>We define the RV, <span class="math inline">\(X\)</span>, as the number of heads that come up in the four coin tosses. Then the range of X is <span class="math inline">\(\Omega_X = \{x_1 = 0, x_2 = 1,..., x_5= 4\}\)</span>.</p></li>
+<li><p>An <strong>event</strong> defined as the set of outcomes <strong><em>s</em></strong> in the sample space <strong><em>S</em></strong>. For example an event, <strong>A</strong>, could be “getting exactly 2 heads”. Then <strong>A</strong> would include all outcomes from the sample space where there are 2 heads, e.g.: <span class="math inline">\((HHTT), (HTHT),\)</span> etc. In general terms <span class="math inline">\(A=\{s∈S|X(s)=x_k\}\)</span></p></li>
+<li><p>Probabilities of events <span class="math inline">\(\{X=x_k\}\)</span> are formally shown by the probability mass function (<strong>pmf</strong>) of <span class="math inline">\(X\)</span>, i.e.&nbsp;showing the probability of each value of <span class="math inline">\(\Omega_X\)</span>: <span class="math inline">\(P(X=0), ..., P(X=4)\)</span>. Formally, the <strong>pmf</strong>: <span class="math inline">\(f_X(x_k) = P(X=x_k)\)</span>.</p></li>
+</ul>
 <div class="cell">
+<div class="cell-output-display">
+<div id="fig-coin_pmf1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin_pmf1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="discreteRV_files/figure-html/fig-coin_pmf1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin_pmf1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: e.g.&nbsp;P(X = 1): The probability of getting 1 head (HTTT, THTT, TTHT, TTTH) = 4/(2^4) = 0.25.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>To be a pmf, <span class="math inline">\(f_X\)</span> must have the following properties:</p>
+<ul>
+<li><p><span class="math inline">\(f_X \ge 0\)</span> for <span class="math inline">\(x \in \Omega\)</span>. i.e <span class="math inline">\(P(X =x_k) &lt; 0\)</span></p></li>
+<li><p><span class="math inline">\(\Sigma_{x \in \Omega} f_X = 1\)</span></p></li>
+</ul>
+<p>From our example, for in each case <span class="math inline">\(f_X \ge 0\)</span> and the sum is 1</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Number_of_Heads</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0625</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.3750</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.2500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.0625</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ul>
+<li>The <strong>cumulative distribution function (cdf)</strong> <span class="math inline">\(F_X(x) = P(X ≤ x)\)</span></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-coin_cdf" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin_cdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="discreteRV_files/figure-html/fig-coin_cdf-1.png" id="fig-coin_cdf" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-coin_cdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>The cdf is a non-decreasing function for which <span class="math display">\[\lim_{x\to - \infty} F_X(x) = 0 \text{  and } \lim_{x\to \infty} F_X(x) =1 \]</span></li>
+<li><strong>expected value</strong> <span class="math display">\[E(X) = \sum_{x=\Omega} xf_X(x)\]</span></li>
+<li><strong>variance</strong> <span class="math display">\[Var(X) = E[(X-E(X))^2]\]</span></li>
+</ul>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="uniform-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="uniform-distribution">Uniform Distribution</h4>
+</section>
+<section id="bernoulli-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="bernoulli-distribution">Bernoulli Distribution</h4>
+</section>
+<section id="binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="binomial-distribution">Binomial distribution</h4>
+<p>(example from Lecture 1):</p>
+<p>Let <span class="math inline">\(Y \in \{ 0,1\}\)</span> denote the outcome of a binary experiment. Where a success (y=1) has probability <span class="math inline">\(p \in(0,1)\)</span>, and failure (y=0) probability <span class="math inline">\(1-p\)</span>.</p>
+<p>The binomial distribution <span class="math inline">\(X = \sum_{i=1}^{n} Y_i\)</span> counts the number of successes <span class="math inline">\(X\)</span> out of <span class="math inline">\(n\)</span> independent Bernoulli trials <span class="math inline">\(Y_1, Y_2, ..., Y_n\)</span>:</p>
+<p><span class="math display">\[
+f_X(x) = \binom{n}{x} p^x(1 - p)^{n-x}, \quad x = 0, 1,…, n
+\]</span></p>
+<p><span class="math inline">\(E(X) = np\)</span></p>
+<p><span class="math inline">\(Var(X) = np(1 - p)\)</span></p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">7</span>; p <span class="ot">=</span> <span class="fl">0.4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>omega <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span>n</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pmf <span class="ot">=</span> <span class="fu">dbinom</span>(<span class="at">x =</span> omega, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>bin.distr <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> omega, pmf)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>bin.distr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>  x       pmf
+1 0 0.0279936
+2 1 0.1306368
+3 2 0.2612736
+4 3 0.2903040
+5 4 0.1935360
+6 5 0.0774144
+7 6 0.0172032
+8 7 0.0016384</code></pre>
 </div>
 </div>
+<p>To compute the cdf</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># option 1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cdf1 <span class="ot">=</span> <span class="fu">pbinom</span>(<span class="at">q =</span> omega, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># option 2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>cdf2 <span class="ot">=</span> <span class="fu">cumsum</span>(pmf)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">round</span>(cdf1, <span class="dv">10</span>) <span class="sc">==</span> <span class="fu">round</span>(cdf2, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Both options the same till 10 d.p.</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bin.distr, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">bty =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">'steelblue2'</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">'Probability mass function'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(omega, cdf1, <span class="at">type =</span> <span class="st">'s'</span>, <span class="at">bty =</span> <span class="st">"l"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">'x'</span>, <span class="at">ylab =</span> <span class="st">'cumulative probability'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span> <span class="st">'steelblue2'</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">'Cumulative distribution function'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-bin.dist-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin.dist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="discreteRV_files/figure-html/fig-bin.dist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin.dist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Corresponding PMF and CDF
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-bin.dist-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin.dist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="discreteRV_files/figure-html/fig-bin.dist-2.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin.dist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Corresponding PMF and CDF
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="poisson-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="poisson-distribution">Poisson Distribution</h4>
+</section>
+<section id="geometric-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="geometric-distribution">Geometric Distribution</h4>
+</section>
+<section id="negative-binomial-pascal-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="negative-binomial-pascal-distribution">Negative Binomial (Pascal) Distribution</h4>
+</section>
+<section id="hypergeometric-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="hypergeometric-distribution">Hypergeometric Distribution</h4>
+</section>
+</section>
+<section id="section" class="level1">
+<h1></h1>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -598,13 +869,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./contRV.html" class="pagination-link  aria-label=" &lt;span="" random="" variables&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Continuous random variables</span></span>
+      <a href="./probability.html" class="pagination-link  aria-label=" probability"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./howto.html" class="pagination-link" aria-label="<span class='chapter-number'>A</span>&nbsp; <span class='chapter-title'>How I made this</span>">
-        <span class="nav-page-text"><span class="chapter-title">How I made this</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./contRV.html" class="pagination-link" aria-label="<span class='chapter-number'>2</span>&nbsp; <span class='chapter-title'>Continuous random variables</span>">
+        <span class="nav-page-text"><span class="chapter-title">Continuous random variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
