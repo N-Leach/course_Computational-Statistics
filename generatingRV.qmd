@@ -1,0 +1,11 @@
+# Generating Random Numbers
+
+true vs pseudo
+
+Methods to generate random numbers
+
+1. multiplicative congruential random number generator (MCRNG)
+2. the Inverse Transform Method (ITM)
+3. a simple method that relies on sample( )
+4. the acceptance-rejection method (ARM)
+5. methods to sample from convolutions and from mixture models

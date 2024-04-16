@@ -1,0 +1,13 @@
+# Multiplicative Congruential Random Number Generator (MCRNG)
+
+The MCRNG is an algorithm that can be used to draw numbers from $X \sim U(0, 1)$
+
+TODO: Add how it works: Braun and Murdoch's book "A first course in statistical programming with R" 2nd edition (2016): Section 5.2
+
+-   we know how to generate numbers from a discrete uniform (= draw balls from an urn)
+
+-   draw a sample $x$ with replacement from a discrete uniform with $\Omega = \{1, 2, ..., k\}$ where $k \to \infty$, then set $u = \frac{x}{k}$
+
+-   obvious issue: $k \to \infty$? ($\Rightarrow$ choose $k$ based on desired level of accuracy)
+
+### In R

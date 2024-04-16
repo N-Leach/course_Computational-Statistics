@@ -78,8 +78,6 @@ abline(h = 1, lty = 2)
 
 ### Examples
 
-#### Uniform Distribution
-
 #### Bernoulli Distribution
 
 #### Binomial distribution

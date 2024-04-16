@@ -1,0 +1,41 @@
+# Inverse Transform Method (ITM)
+
+Two requirements to use the Inverse Transform Method (ITM) to generate from a random variable $X$ with cdf $F_X(x)$:
+
+1.  a uniform random number generator `runif( )`
+
+2.  the inverse cdf, $F^{−1}_X(p)$
+
+::: callout-tip
+## Steps
+
+1.   Compute the inverse $F^{−1}_X(p)$
+
+2.  Write an `R` function that computes $F^{−1}_X(p)$
+
+3.  Draw $u \sim U(0, 1)$ and set $F^{−1}_X(u)$
+:::
+
+Example:
+
+exponential dist 
+cdf: $F_x = 1- exp(-\lambda x)$ 
+for inverse solve F_x = p
+
+```{r}
+set.seed(1234)
+random.exp <- function(n, lam) {
+  u <- runif(n)
+  - log(1 - u) / lam
+}
+
+x <- random.exp(1e6, 3)
+```
+
+```{r}
+#| label: fig-exp.ex
+#| fig-cap: "Mean = `r mean(x)` and variance `r var(x)` E(X) if X~exp is 1/lam and var(x) should be 1/(lam^2)"
+hist(x, 50, prob = T)
+curve(3 * exp(-3 * x), add = TRUE, col = 'red', lwd = 2)
+
+```

@@ -1,6 +1,6 @@
 # Probability
 
-@pishro-nik2014
+The following uses @pishro-nik2014
 
 ## Random Variables
 

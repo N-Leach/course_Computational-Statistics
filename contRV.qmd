@@ -1,1 +1,29 @@
 # Continuous random variables
+
+### Examples: Special Distributions
+
+#### Uniform
+
+#### Exponential
+
+#### Normal
+
+example form lecture 1
+
+```{r, echo=TRUE}
+#| label: fig-norm.dist
+#| fig-cap: Corresponding PMF and CDF
+#| layout-ncol: 2
+
+curve(dnorm(x, mean = 1, sd = 1), xlim = c(-4, 4),
+bty = 'l', ylab = 'density',
+col = 'steelblue2', lwd = 2)
+abline(v = 1, lty = 2)
+
+curve(pnorm(x, mean = 1, sd = 1), xlim = c(-4, 4),
+bty = 'l', ylab = 'cumulative probability',
+col = 'steelblue2', lwd = 2)
+abline(h = 1, lty = 2)
+```
+
+#### Gamma
