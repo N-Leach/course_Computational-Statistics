@@ -4,7 +4,7 @@ project:
 filters:
   - webr
 webr:
-  packages: ['tidyverse']
+  packages: ['mtcars']
 
 book:
   title: "Computational-Statistics"
@@ -31,6 +31,8 @@ book:
 format:
   html:
     theme: materia
+    toc: true
+    toc-depth: 2
   pdf:
     documentclass: scrreprt
 
