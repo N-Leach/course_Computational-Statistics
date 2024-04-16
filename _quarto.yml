@@ -4,7 +4,7 @@ project:
 filters:
   - webr
 webr:
-  packages: ['palmerpenguins']
+  packages: ['tidyverse']
 
 book:
   title: "Computational-Statistics"

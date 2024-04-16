@@ -1,34 +1,54 @@
 # Probability
 
--   Set Theory
+@pishro-nik2014
 
 ## Random Variables
 
-A random experiment is a procedure where uncertain events are observed. An **outcome** is the result of such an experiment, and the collection of all possible outcomes is called the **sample space** $\Omega$. For example:
+A random experiment is a procedure where uncertain events are observed. An **outcome** is the result of such an experiment, and the collection of all possible outcomes is called the **sample space** $S$. For example:
 
--   a coin toss: $\Omega = \{heads,tails\}$
+-   a coin toss: $S = \{heads,tails\}$
 
--   roll a 6 sided die: $\Omega = \{1, 2, 3, 4, 5, 6\}$
+-   roll a 6 sided die (D6): $S = \{1, 2, 3, 4, 5, 6\}$
 
--   number of rainy days in June: $\Omega = \{0, 1, ..., 30\}$
+-   number of rainy days in June: $S = \{0, 1, ..., 30\}$
 
-Repetitions of a random experiment is known as a **trial.** If a coin is tossed twice $\Omega = \{(H, H), (T, H), (H, T), (T, T)\}$.
+Repetitions of a random experiment is known as a **trial.** If a coin is tossed twice $S = \{(H, H), (T, H), (H, T), (T, T)\}$.
 
 An **event** is a subset of the sample space.
 
-The numerical results of an a random experiment are **random variables**.
+The numerical results of an a random experiment are **random variables(RV)**. For the example of a coin tossed twice, numeral values can be assigned to each outcome: $(H, H) = 0, (T, H) = 1, ...$
+
+The set of possible values for random variable $X$ is denoted by $Range(X)$, $R_X$, $\Omega$.
+
+1.  I roll a D6 10 times. Let X be the number of 1's observed. Then $R_X = \{0, 1, ..., 10\}$
+
+2.  How many attempts it takes for Manchester United (F.C.) defense to tighten up. Let Y represent the total number of games before they manage to keep a clean sheet. Then $R_Y = \{ 1,2, ...\} = \mathbb{N}$ i.e. Y can be any positive integer.
+
+3.  The random variable T is the time (in hours) from now until the next earthquake occurs. This can be any non negative real number $R_T = [0, \infty)$
 
 ## Discrete random variables
 
 A random variable X is called discrete if:
 
-1.  $\Omega$ is a finite set. Meaning: ...
+1.  $\Omega$ is a finite set. E.g. $\Omega_X = {1, 2, 3, 4$.
 
-2.  a countably infinite set (e.g., N)
+2.  a countably infinite set. E.g.:
+
+    -   Natural numbers $\mathbb{N} = {1, 2, 3, ...}$,
+
+    -   Integers $\mathbb{Z} = \{..., -1, 0, 1,...\}$,
+
+    -   **Rational number**, $\mathbb{Q}$ (number that can be expressed as a fraction), etc..
 
 If $\Omega$ isn't a countable set, X is continuous
 
-pdf/ cdf here
+::: {#def_discrete .callout-tip appearance="minimal"}
+## Definition
+
+If $X$ is discrete then:
+
+1.  
+:::
 
 ### Examples
 
