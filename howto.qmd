@@ -1,10 +1,10 @@
-# How I made this 
+# How I made this
 
 ## Github
 
 https://happygitwithr.com/
 
-## git website 
+## git website
 
 https://www.codecademy.com/article/creating-a-website-on-github-pages
 
@@ -12,6 +12,8 @@ https://www.codecademy.com/article/creating-a-website-on-github-pages
 
 https://quarto-webr.thecoatlessprofessor.com/
 
-## Inspiration 
+## Inspiration
 
 https://dkon1.github.io/quant_life_quarto/tutorial3.html
+
+https://github.com/casrou/ProbToPdf/blob/master/Introduction%20to%20Probability%2C%20Statistics%2C%20and%20Random%20Processes%20-%20Hossein%20Pishro-Nik.pdf
