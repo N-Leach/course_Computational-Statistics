@@ -78,6 +78,10 @@ abline(h = 1, lty = 2)
 
 ### Examples
 
+#### Discrete uniform distribution
+
+-   flip a coin
+
 #### Bernoulli Distribution
 
 #### Binomial distribution
