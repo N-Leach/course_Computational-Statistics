@@ -213,7 +213,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#in-r" id="toc-in-r" class="nav-link active" data-scroll-target="#in-r">In R</a></li>
+  <li><a href="#monte-carlo-simulation" id="toc-monte-carlo-simulation" class="nav-link active" data-scroll-target="#monte-carlo-simulation">Monte Carlo Simulation</a>
+  <ul class="collapse">
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a></li>
+  </ul></li>
+  <li><a href="#simulation-of-other-random-variables" id="toc-simulation-of-other-random-variables" class="nav-link" data-scroll-target="#simulation-of-other-random-variables">Simulation of other random variables</a>
+  <ul class="collapse">
+  <li><a href="#bernoulli-random-variables" id="toc-bernoulli-random-variables" class="nav-link" data-scroll-target="#bernoulli-random-variables">Bernoulli random variables</a></li>
+  <li><a href="#binomial-random-variables" id="toc-binomial-random-variables" class="nav-link" data-scroll-target="#binomial-random-variables">Binomial random variables</a></li>
+  <li><a href="#poisson-random-variables" id="toc-poisson-random-variables" class="nav-link" data-scroll-target="#poisson-random-variables">Poisson random variables</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -239,17 +248,175 @@ window.Quarto = {
 </header>
 
 
-<p>The MCRNG is an algorithm that can be used to draw numbers from <span class="math inline">\(X \sim U(0, 1)\)</span></p>
-<p>TODO: Add how it works: Braun and Murdoch’s book “A first course in statistical programming with R” 2nd edition (2016): Section 5.2</p>
+<p>(from: Braun and Murdoch’s book “A first course in statistical programming with R” 2nd edition (2016): Section 5.2)</p>
+<section id="monte-carlo-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="monte-carlo-simulation">Monte Carlo Simulation</h2>
+<p>to approximate the mean <span class="math inline">\(\mu = E(x)\)</span>: generate m independent and identically distributed (i.i.d.) values of X and use the sample mean (<span class="math inline">\(\bar{X} = \frac{\Sigma X_i}{m}\)</span>) : good approximation for large m (law of large numbers) the distribution of <span class="math inline">\(\bar{X}\)</span> can be approximated by a normal distribution the mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma ^2 /m\)</span> -&gt; central limit theorem</p>
+<p>A multiplicative congruential random number generator (MCRNG) is an algorithm that can be used to draw numbers from <span class="math inline">\(X \sim U(0, 1)\)</span></p>
+<p>m large integer, b is another integer where m&gt;b <span class="math inline">\(x_0\)</span> integer between 1 and m &lt;- seed</p>
+<p>formula <span class="math inline">\(x_n = bx_{n-1}\)</span>(mod m), $ u_n = x_n / m$</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.71656713 0.24954631 0.92196522 0.57801828 0.41914409 0.09278385
+ [7] 0.95882139 0.91727984 0.77213185 0.80667833 0.74867192 0.77157092
+[13] 0.71019896 0.15422180 0.52614907 0.49764081 0.59421916 0.20569505
+[19] 0.37954928 0.28247600</code></pre>
+</div>
+</div>
 <ul>
-<li><p>we know how to generate numbers from a discrete uniform (= draw balls from an urn)</p></li>
+<li>choose m so that it is not divizable by b</li>
+</ul>
+<p>ex 4</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.49605698 0.08148008 0.28544716</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li>Compare your results with the true mean, variance, and standard deviation</li>
+</ol>
+<p>mean = median of uniform distribution is 1/2(a+b) variance: <span class="math inline">\(1/12(b-a)^2\)</span> = 1/12 sd = sqrt(var)</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.08333333</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2886751</code></pre>
+</div>
+</div>
+<p>answer the same to 2d.p</p>
+<section id="ex-5" class="level4">
+<h4 class="anchored" data-anchor-id="ex-5">ex 5</h4>
+<p>5 Simulate 10000 independent observations on a uniformly distributed random variable on the interval [3.7, 5.8]. (a) Estimate the mean, variance, and standard deviation of such a uniform random variable and compare your estimates with the true values.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.75</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.744036</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3675</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3401287</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6062178</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5832055</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li>Estimate the probability that such a random variable is greater than 4.0. Compare with the true value.</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.888</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8571429</code></pre>
+</div>
+</div>
+</section>
+<section id="steps" class="level3">
+<h3 class="anchored" data-anchor-id="steps">Steps</h3>
+<ul>
 <li><p>draw a sample <span class="math inline">\(x\)</span> with replacement from a discrete uniform with <span class="math inline">\(\Omega = \{1, 2, ..., k\}\)</span> where <span class="math inline">\(k \to \infty\)</span>, then set <span class="math inline">\(u = \frac{x}{k}\)</span></p></li>
 <li><p>obvious issue: <span class="math inline">\(k \to \infty\)</span>? (<span class="math inline">\(\Rightarrow\)</span> choose <span class="math inline">\(k\)</span> based on desired level of accuracy)</p></li>
 </ul>
-<section id="in-r" class="level3">
-<h3 class="anchored" data-anchor-id="in-r">In R</h3>
+<section id="lecture-1-practical" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-1-practical">Lecture 1 practical</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="mcrng_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The pseudo-randomly generated numbers u1, . . . , un are approximately evenly distributed over the interval [0, 1]. Also, the sample mean and sample variance of the generated numbers are very close to the theoretical mean and variance of a U(0, 1)-distributed random variable, which are 1/2 and 1 12 = 0.083, respectively. This suggests that the MCRNG algorithm that we implemented is doing a good job at generating U(0, 1)-distributed random numbers.</p>
+</section>
+</section>
+</section>
+<section id="simulation-of-other-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-of-other-random-variables">Simulation of other random variables</h2>
+<p>from book</p>
+<section id="bernoulli-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="bernoulli-random-variables">Bernoulli random variables</h3>
+<p>Write an R function which simulates the outcomes of a student guessing at a True–False test consisting of n questions. (a) Use the function to simulate one student guessing the answers to a test with 10 questions; calculate the number of correct answers for this student. (b) Simulate the number of correct answers for a student who guesses at a test with 1000 questions.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 485</code></pre>
+</div>
+</div>
+<p>3 Write an R function which simulates 500 light bulbs, each of which has probability 0.99 of working. Using simulation, estimate the expected value and variance of the random variable X, which is 1 if the light bulb works and 0 if the light bulb does not work. What are the theoretical values?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 495</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.99</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00991984</code></pre>
+</div>
+</div>
+<p>theoretical values: expectation per bulb = 0.99 and variance is = p<em>q (prob of success </em> prop of fail) = 0.99*0.01</p>
+</section>
+<section id="binomial-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="binomial-random-variables">Binomial random variables</h3>
+<p>Compute the probability of getting four heads in six tosses of a fair coin</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.234375</code></pre>
+</div>
+</div>
+<p>1 Suppose the proportion defective is 0.15 for a manufacturing operation. Simulate the number of defectives for each hour of a 24-hour period, assuming 25 units are produced each hour. Check whether the number of defectives ever exceeds 5. Repeat, assuming p = 0.2 and then p = 0.25</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Use simulation to estimate the mean and variance of a binomial random variable with n = 18 and p = 0.76. Compare with the theoretical values.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13.689</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.059338</code></pre>
+</div>
+</div>
+<p>theoretical</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13.68</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.2832</code></pre>
+</div>
+</div>
+<p>The following function simulates binomial pseudorandom numbers by summing up the corresponding independent Bernoulli random variables.</p>
+</section>
+<section id="poisson-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="poisson-random-variables">Poisson random variables</h3>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

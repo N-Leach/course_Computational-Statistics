@@ -209,7 +209,15 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#example-exponential-dist" id="toc-example-exponential-dist" class="nav-link active" data-scroll-target="#example-exponential-dist">Example: exponential dist</a></li>
+  <li><a href="#lecture-1-exercise-2" id="toc-lecture-1-exercise-2" class="nav-link" data-scroll-target="#lecture-1-exercise-2">Lecture 1: Exercise 2</a></li>
+  <li><a href="#lecture-2-discrete-r.v." id="toc-lecture-2-discrete-r.v." class="nav-link" data-scroll-target="#lecture-2-discrete-r.v.">(lecture 2) Discrete R.V.</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -249,14 +257,31 @@ Steps
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>Compute the inverse <span class="math inline">\(F^{−1}_X(p)\)</span></p></li>
+<li><p>Compute the inverse of <span class="math inline">\(F_X(p):F^{−1}_X(p)\)</span></p></li>
 <li><p>Write an <code>R</code> function that computes <span class="math inline">\(F^{−1}_X(p)\)</span></p></li>
 <li><p>Draw <span class="math inline">\(u \sim U(0, 1)\)</span> and set <span class="math inline">\(F^{−1}_X(u)\)</span></p></li>
 </ol>
 </div>
 </div>
-<p>Example:</p>
-<p>exponential dist cdf: <span class="math inline">\(F_x = 1- exp(-\lambda x)\)</span> for inverse solve F_x = p</p>
+<section id="note" class="level4">
+<h4 class="anchored" data-anchor-id="note">Note</h4>
+<ul>
+<li><p>for a discrete distribution computing the CDF is not difficult: add up the individual probabilities for the points of the distribution</p></li>
+<li><p>CDF for continuous dist. integrate the PDF</p></li>
+</ul>
+</section>
+<section id="example-exponential-dist" class="level3">
+<h3 class="anchored" data-anchor-id="example-exponential-dist">Example: exponential dist</h3>
+<p><strong>Step 1</strong>: find the inverse <span class="math inline">\(F_X(p)\)</span>, the cdf is: <span class="math inline">\(F_x = 1- exp(-\lambda x)\)</span> for inverse solve:</p>
+<p><span class="math display">\[
+F_x() = p  \\
+F_x() = 1- e^{(-\lambda x)} = p \\
+e^{(-\lambda x)} = 1 - p \\
+ln(e^{(-\lambda x)}) = ln(1-p) \\
+-\lambda x = ln(1-p) \\
+x = - \frac{1}{\lambda} \cdot ln(1-p)
+\]</span></p>
+<p><strong>Step 2 &amp;3:</strong></p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-exp.ex" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -271,8 +296,177 @@ Figure&nbsp;4.1: Mean = <code>r mean(x)</code> and variance <code>r var(x)</code
 </div>
 </div>
 </div>
+</section>
+<section id="lecture-1-exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="lecture-1-exercise-2">Lecture 1: Exercise 2</h3>
+<section id="step-1-pdf-cdf-and-expected-value" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-pdf-cdf-and-expected-value">Step 1: pdf, cdf and expected value</h4>
+<p>X ~ continuous random variable with density <span class="math inline">\(f_X(x) = x^3\)</span> for 0&lt;=x&lt;=k</p>
+<ol type="1">
+<li>find k such that <span class="math inline">\(f_X(x)\)</span> is a pdf</li>
+</ol>
+<ul>
+<li>integrate the pdf</li>
+</ul>
+<p><span class="math display">\[
+\int_{0}^{k} x^3 dx \\
+\left[ \frac{x^4}{4} \right]_0^k \\
+\frac{k^4}{4}- 0 = 1 \\
+k^4 = 1*4 \\
+k = \sqrt{2}
+\]</span></p>
+<ol start="2" type="1">
+<li>Compute the cdf FX(x)</li>
+</ol>
+<p>The cdf is the integral of the pdf over it’s range</p>
+<p><span class="math display">\[
+F_X(x)= \int_{0}^{x} f_X(s) ds \\
+= \int_{0}^{x} s^3 ds \\
+= \frac{x^4}{4}, \text{ when } 0&lt;=x&lt;=k = \sqrt{2}   \\
+\]</span></p>
+<p>Therefore the cdf is given by:</p>
+<p><span class="math display">\[
+F_X(x) =
+\begin{cases}
+0, &amp; \text{if  } x &lt; 0; \\
+\frac{1}{4}x^4, &amp; \text{if  } 0 \leq x \leq \sqrt{2}; \\
+1, &amp; \text{if  } x &gt; \sqrt{2}.
+\end{cases}
+\]</span></p>
+<ol start="3" type="1">
+<li>Compute E(X)</li>
+</ol>
+<p>$$</p>
+<p>E(X) = _{-}^{} x f_X(x) dx \</p>
+<p>E(X) = ^{k} x x^3 dx = ^{k} x^4 dx\</p>
+<p>E(X) = _0^k \</p>
+<p>E(X) = _0^{} \</p>
+<p>E(X) = - 0 \</p>
+<p>E(X) = <em>(</em>)^4 () \</p>
+<p>E(X) = ()</p>
+<p>$$</p>
+<p>3.2 Compute Var(X) <span class="math inline">\(Var(X) = E[X^2] -E[X]^2\)</span></p>
+<p>Step 1 $$</p>
+<p>E(X^2) = ^{k} x<sup>2x</sup>3 dx = ^{k} x^5 dx\</p>
+<p>= _0^k \</p>
+<p>= - 0 \</p>
+<p>= = $$</p>
+<p>Step 2 <span class="math inline">\([E(X)]^2 =  (\frac{4}{5}(\sqrt 2))^2\)</span></p>
+<p><span class="math display">\[
+Var(X) = \frac{4}{3} - (\frac{4}{5}(\sqrt 2))^2 = \frac{4}{75}
+\]</span></p>
+</section>
+<section id="step-2-application-of-the-itm" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-application-of-the-itm">Step 2: application of the ITM</h4>
+<p>Apply the ITM to generate (pseudo)-random numbers from this random variable:</p>
+<p><strong>Step 1</strong> Compute the inverse cdf <span class="math inline">\(F^{−1}_X (x)\)</span></p>
+<p>For <span class="math inline">\(0&lt;=x&lt;=k = \sqrt{2}\)</span>: cdf: <span class="math inline">\(F_X^{-1}(x) = \frac{x^4}{4}\)</span></p>
+<p>Set <span class="math inline">\(F_X^{-1}(x) = p\)</span> :</p>
+<p>$$ = p \ x^4 = 4p \ x = (4p)^{1/4} \</p>
+<p>F_X^{-1}(p) = (4p)^{1/4}</p>
+<p>$$</p>
+<p>and (b) write an R function to generate random numbers from X ∼ fX(x) that relies on the ITM.</p>
+</section>
+<section id="step-3-double-check-your-random-number-generator" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-double-check-your-random-number-generator">Step 3: double-check your random number generator</h4>
+<ol start="8" type="1">
+<li>Compare the range of the numbers generated at point (7) to the support of X. What do you notice?</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1127  0.9983  1.1889  1.1323  1.3166  1.4142 </code></pre>
+</div>
+</div>
+<p>The support of X is (<span class="math inline">\(0, \sqrt2\)</span>) but the range of the sample is (0.11, 1.4).</p>
+<ol start="9" type="1">
+<li>Compute the mean and variance of the numbers generated at point (7), and compare them to the values of E(X) and V ar(X) that you computed at point (3). Are the numerical results in agreement with your analytical derivations?</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.132304</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05234072</code></pre>
+</div>
+</div>
+<p>analytical:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.333333</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05333333</code></pre>
+</div>
+</div>
+<ol start="10" type="1">
+<li>Draw a histogram that shows the empirical density of the 10000 random numbers, and compare it to fX(x)</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="itm_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The values generated are close to the curve of <span class="math inline">\(f_X(x)\)</span></p>
+</section>
+</section>
+<section id="lecture-2-discrete-r.v." class="level1">
+<h1>(lecture 2) Discrete R.V.</h1>
+<section id="example-binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="example-binomial-distribution">Example: binomial distribution</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 3 4 4 3 5 5 3 1 2 2</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  omega     pmf rel.freq
+1     0 0.02799  0.02832
+2     1 0.13064  0.13305
+3     2 0.26127  0.25915
+4     3 0.29030  0.29070
+5     4 0.19354  0.19191
+6     5 0.07741  0.07758
+7     6 0.01720  0.01763
+8     7 0.00164  0.00166</code></pre>
+</div>
+</div>
+<ul>
+<li><p>sample(1:k, n, replace = T, prob = c(…)) allows you to generate n independent realizations from a multinomial distribution</p></li>
+<li><p>each single draw from sample( ) as an application of the ITM</p></li>
+</ul>
+</section>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example</h4>
+<p><span class="math inline">\(\Omega = {1, 2, 3, 4}\)</span>, <span class="math inline">\(P(X = k) = \frac{k}{10}\)</span> for <span class="math inline">\(\Omega \in k\)</span></p>
+<ol type="1">
+<li><p>pdf: <span class="math inline">\(P(X = k) = \frac{k}{10}\)</span> Where k can be 1,…4</p></li>
+<li><p>cdf is defined as <span class="math inline">\(F_X(x) = P(X &lt;= k)\)</span> i.e.&nbsp;the sum of probabilities of all the outcomes of k.</p></li>
+</ol>
+$$ F_X(x) =
+<span class="math display">\[\begin{cases}
+0                                           &amp;  x &lt; 1; \\
+\frac{1}{10}                                &amp; 1 \leq x \leq{2}
+                                                \text{ i.e.  }P(X=1); \\
+\frac{1}{10}+\frac{2}{10} = \frac{3}{10}    &amp; 2 \leq x \leq{3}; \\
+\frac{6}{10}                                &amp; 3 \leq x \leq{4}; \\
+1                                           &amp;  x &lt;4; \\
+
+\end{cases}\]</span>
+<p>$$ ##### Applying ITM</p>
+<ul>
+<li>Draw from a U(0, 1)<br>
+</li>
+<li>Apply the inverse CDF to determine the outcome</li>
+</ul>
+<p>Suppose we generate u1 = 0.55 This u is in the interval of <span class="math inline">\(\frac{3}{10}\leq x &lt; \frac{6}{10}\)</span> The corresponding value of X for this interval is 3 Therefore <span class="math inline">\(F_X^{-1}(0.55) =3\)</span></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

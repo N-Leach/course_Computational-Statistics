@@ -56,7 +56,9 @@ curve(3 * exp(-3 * x), add = TRUE, col = 'red', lwd = 2)
 ```
 
 ### Lecture 1: Exercise 2
+
 #### Step 1: pdf, cdf and expected value
+
 X \~ continuous random variable with density $f_X(x) = x^3$ for 0\<=x\<=k
 
 1.  find k such that $f_X(x)$ is a pdf
@@ -93,10 +95,12 @@ F_X(x) =
 $$
 
 3.  Compute E(X)
+
 $$
+
 E(X) = \int_{-\infty}^{\infty} x f_X(x) dx \\
 
-E(X) = \int_{0}^{k} x \cdot x^3 dx = \int_{0}^{k} x^4 dx\\
+E(X) = \int{0}^{k} x \cdot x^3 dx = \int{0}^{k} x^4 dx\\
 
 E(X) = \left[ \frac{x^5}{5} \right]_0^k \\
 
@@ -104,57 +108,53 @@ E(X) = \left[ \frac{x^5}{5} \right]_0^{\sqrt 2} \\
 
 E(X) = \left[ \frac{(\sqrt 2)^5}{5} \right] - 0 \\
 
-E(X) =  \frac{1}{5}*(\sqrt 2)^4 * (\sqrt 2) \\
+E(X) = \frac{1}{5}*(*\sqrt 2)^4 (\sqrt 2) \\
 
-E(X) =  \frac{4}{5}(\sqrt 2)
-$$
+E(X) = \frac{4}{5}(\sqrt 2)
 
-3.2 Compute Var(X)
-$$
-Var(X) = E[X^2] -E[X]^2
 $$
 
-Step 1
-$$
-E(X^2) = \int_{0}^{k} x^2 \cdot x^3 dx = \int_{0}^{k} x^5 dx\\
+3.2 Compute Var(X) $Var(X) = E[X^2] -E[X]^2$
+
+Step 1 
+$$ 
+
+E(X^2) = \int{0}^{k} x^2\cdot x^3 dx = \int{0}^{k} x^5 dx\\
 
 = \left[ \frac{x^6}{6} \right]_0^k \\
 
 = \left[ \frac{(\sqrt 2)^6}{6} \right] - 0 \\
 
-=  \frac{8}{6} = \frac{4}{3}
+= \frac{8}{6} = \frac{4}{3} 
 $$
 
-Step 2
-$$
-[E(X)]^2 =  (\frac{4}{5}(\sqrt 2))^2
-$$
+Step 2 $[E(X)]^2 =  (\frac{4}{5}(\sqrt 2))^2$
+
 
 $$
 Var(X) = \frac{4}{3} - (\frac{4}{5}(\sqrt 2))^2 = \frac{4}{75}
 $$
 
-
 #### Step 2: application of the ITM
+
 Apply the ITM to generate (pseudo)-random numbers from this random variable:
 
-**Step 1**  Compute the inverse cdf $F^{−1}_X (x)$ 
-For $0<=x<=k = \sqrt{2}$: cdf:
-$F_X^{-1}(x) = \frac{x^4}{4}$
+**Step 1** Compute the inverse cdf $F^{−1}_X (x)$ 
 
-Set $F_X^{-1}(x) = p$ :
-$$
-\frac{x^4}{4} = p \\
-x^4 = 4p \\
-x = (4p)^{1/4} \\
+For $0<=x<=k = \sqrt{2}$: cdf: $F_X^{-1}(x) = \frac{x^4}{4}$
+
+Set $F_X^{-1}(x) = p$ : 
+
+$$ 
+\frac{x^4}{4} = p \\ 
+x^4 = 4p \\ x = (4p)^{1/4} \\
 
 F_X^{-1}(p) = (4p)^{1/4}
 
 $$
 
+and (b) write an R function to generate random numbers from X ∼ fX(x) that relies on the ITM.
 
-and (b) write an R
-function to generate random numbers from X ∼ fX(x) that relies on the ITM.
 ```{r}
 itm_method <- function(n){
   u <- runif(n)
@@ -172,34 +172,87 @@ X <- itm_method(10000) #7
 
 ```
 
-8. Compare the range of the numbers generated at point (7) to the support of X. What
-do you notice?
+8.  Compare the range of the numbers generated at point (7) to the support of X. What do you notice?
 
 ```{r}
 summary(X)
 ```
 
-The support of X is ($0, \sqrt2$) but the range of the sample is (0.11, 1.4). 
+The support of X is ($0, \sqrt2$) but the range of the sample is (0.11, 1.4).
 
-9. Compute the mean and variance of the numbers generated at point (7), and compare
-them to the values of E(X) and V ar(X) that you computed at point (3). Are the
-numerical results in agreement with your analytical derivations?
+9.  Compute the mean and variance of the numbers generated at point (7), and compare them to the values of E(X) and V ar(X) that you computed at point (3). Are the numerical results in agreement with your analytical derivations?
 
 ```{r}
 mean(X); var(X)
 ```
-analytical: 
+
+analytical:
+
 ```{r}
 4/3
 4/75
 ```
 
-10. Draw a histogram that shows the empirical density of the 10000 random numbers, and
-compare it to fX(x)
+10. Draw a histogram that shows the empirical density of the 10000 random numbers, and compare it to fX(x)
+
 ```{r}
 hist(X, prob = TRUE, breaks = 50)
 curve(x^3, add = TRUE, col = "cornflowerblue")
 ```
 
 The values generated are close to the curve of $f_X(x)$
+
+# (lecture 2) Discrete R.V.
+
+#### Example:  binomial distribution
+
+```{r}
+n = 7; p = 0.4
+omega = 0:n
+pmf = dbinom(omega, size = n, prob = p) # pmf of # X \sim Bin(n, p)
+bin.distr = data.frame(omega, pmf)
+set.seed(2)
+# how to sample 10 random numbers from X \sim Bin(n, p): 
+sample(x = bin.distr$omega, size = 10,
+       prob = bin.distr$pmf, replace = T)
+
+x = sample(x = bin.distr$omega, size = 1e5, prob = bin.distr$pmf, replace = T)
+bin.distr$rel.freq = as.numeric(table(x)/length(x)) 
+round(bin.distr, 5)
+```
+
+-   sample(1:k, n, replace = T, prob = c(...)) allows you to generate n independent realizations from a multinomial distribution
+
+-   each single draw from sample( ) as an application of the ITM
+
+#### Example
+
+$\Omega = {1, 2, 3, 4}$, $P(X = k) = \frac{k}{10}$ for $\Omega \in k$
+
+1.  pdf: $P(X = k) = \frac{k}{10}$ Where k can be 1,...4
+
+2.  cdf is defined as $F_X(x) = P(X <= k)$ i.e. the sum of probabilities of all the outcomes of k.
+
+$$
+F_X(x) = 
+\begin{cases} 
+0                                           &  x < 1; \\
+\frac{1}{10}                                & 1 \leq x \leq{2} 
+                                                \text{ i.e.  }P(X=1); \\
+\frac{1}{10}+\frac{2}{10} = \frac{3}{10}    & 2 \leq x \leq{3}; \\
+\frac{6}{10}                                & 3 \leq x \leq{4}; \\
+1                                           &  x <4; \\
+
+\end{cases}
+$$
+##### Applying ITM 
+
+-   Draw from a U(0, 1)  
+-   Apply the inverse CDF to determine the outcome 
+
+Suppose we generate u1 = 0.55
+This u is in the interval of $\frac{3}{10}\leq x < \frac{6}{10}$
+The corresponding value of X for this interval is 3
+Therefore $F_X^{-1}(0.55) =3$
+
 
