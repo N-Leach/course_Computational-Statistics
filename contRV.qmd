@@ -1,5 +1,32 @@
 # Continuous random variables
 
+::: callout-tip
+If ( X ) is continuous, we define:
+
+-   the probability density function (pdf) ( f_X(x) ) as the function for which $$
+    P(X \in A) = \int_{x \in A} f_X(t) \, dt
+    $$
+
+-   the cumulative distribution function (cdf) ( F_X(x) ) $$
+    F_X(x) = \int_{-\infty}^{x} f_X(t) \, dt
+    $$
+
+-   the expected value $$
+    E(X) = \int_{-\infty}^{\infty} x f_X(x) dx
+    $$
+
+-   the variance $$
+    Var(X) = E[(X - E(X))^2 ] \\
+    Var[X] = E[X^2] - E[X]^2 \\
+    $$
+
+    Step 1:
+
+    $$
+    E[X^2] = \int_{-\infty}^{\infty} x^2 f_X(x) \, dx
+    $$
+:::
+
 ### Examples: Special Distributions
 
 #### Uniform
@@ -7,6 +34,18 @@
 #### Exponential
 
 #### Normal
+
+We say a random variable, $X$, follows a normal distribution with mean $\mu$ and variance $\sigma^2$: $X \sim \mathcal{N}(\mu, \sigma^2)$.
+
+If the PDF of $X$ is given by:
+
+$$
+f_X(x) = \frac{1}{\sigma \sqrt{2\pi}} 
+  e^{-\frac{1}{2} \left(\frac{x - \mu}{\sigma}\right)^2}, 
+  x \in (- \infty, \infty)
+$$
+
+In simpler terms, this formula describes how the values of the random variable $X$ are distributed.
 
 example form lecture 1
 

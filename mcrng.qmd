@@ -25,6 +25,7 @@ x1 <- (b*x0)%%m
 u1 <- x1/m
 x2 <- (b*x1)%%m
 u2 <- x2/m
+
 ```
 
 formula 

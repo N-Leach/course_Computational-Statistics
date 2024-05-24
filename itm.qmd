@@ -7,20 +7,35 @@ Two requirements to use the Inverse Transform Method (ITM) to generate from a ra
 2.  the inverse cdf, $F^{−1}_X(p)$
 
 ::: callout-tip
-## Steps
+### Steps
 
-1.   Compute the inverse $F^{−1}_X(p)$
+1.  Compute the inverse of $F_X(p):F^{−1}_X(p)$
 
 2.  Write an `R` function that computes $F^{−1}_X(p)$
 
 3.  Draw $u \sim U(0, 1)$ and set $F^{−1}_X(u)$
 :::
 
-Example:
+#### Note
 
-exponential dist 
-cdf: $F_x = 1- exp(-\lambda x)$ 
-for inverse solve F_x = p
+-   for a discrete distribution computing the CDF is not difficult: add up the individual probabilities for the points of the distribution
+
+-   CDF for continuous dist. integrate the PDF
+
+### Example: exponential dist
+
+**Step 1**: find the inverse $F_X(p)$, the cdf is: $F_x = 1- exp(-\lambda x)$ for inverse solve:
+
+$$
+F_x() = p  \\
+F_x() = 1- e^{(-\lambda x)} = p \\
+e^{(-\lambda x)} = 1 - p \\
+ln(e^{(-\lambda x)}) = ln(1-p) \\
+-\lambda x = ln(1-p) \\
+x = - \frac{1}{\lambda} \cdot ln(1-p)
+$$
+
+**Step 2 &3:**
 
 ```{r}
 set.seed(1234)
@@ -39,3 +54,152 @@ hist(x, 50, prob = T)
 curve(3 * exp(-3 * x), add = TRUE, col = 'red', lwd = 2)
 
 ```
+
+### Lecture 1: Exercise 2
+#### Step 1: pdf, cdf and expected value
+X \~ continuous random variable with density $f_X(x) = x^3$ for 0\<=x\<=k
+
+1.  find k such that $f_X(x)$ is a pdf
+
+-   integrate the pdf
+
+$$
+\int_{0}^{k} x^3 dx \\
+\left[ \frac{x^4}{4} \right]_0^k \\ 
+\frac{k^4}{4}- 0 = 1 \\
+k^4 = 1*4 \\
+k = \sqrt{2}
+$$
+
+2.  Compute the cdf FX(x)
+
+The cdf is the integral of the pdf over it's range
+
+$$
+F_X(x)= \int_{0}^{x} f_X(s) ds \\
+= \int_{0}^{x} s^3 ds \\
+= \frac{x^4}{4}, \text{ when } 0<=x<=k = \sqrt{2}   \\ 
+$$
+
+Therefore the cdf is given by:
+
+$$
+F_X(x) = 
+\begin{cases} 
+0, & \text{if  } x < 0; \\
+\frac{1}{4}x^4, & \text{if  } 0 \leq x \leq \sqrt{2}; \\
+1, & \text{if  } x > \sqrt{2}.
+\end{cases}
+$$
+
+3.  Compute E(X)
+$$
+E(X) = \int_{-\infty}^{\infty} x f_X(x) dx \\
+
+E(X) = \int_{0}^{k} x \cdot x^3 dx = \int_{0}^{k} x^4 dx\\
+
+E(X) = \left[ \frac{x^5}{5} \right]_0^k \\
+
+E(X) = \left[ \frac{x^5}{5} \right]_0^{\sqrt 2} \\
+
+E(X) = \left[ \frac{(\sqrt 2)^5}{5} \right] - 0 \\
+
+E(X) =  \frac{1}{5}*(\sqrt 2)^4 * (\sqrt 2) \\
+
+E(X) =  \frac{4}{5}(\sqrt 2)
+$$
+
+3.2 Compute Var(X)
+$$
+Var(X) = E[X^2] -E[X]^2
+$$
+
+Step 1
+$$
+E(X^2) = \int_{0}^{k} x^2 \cdot x^3 dx = \int_{0}^{k} x^5 dx\\
+
+= \left[ \frac{x^6}{6} \right]_0^k \\
+
+= \left[ \frac{(\sqrt 2)^6}{6} \right] - 0 \\
+
+=  \frac{8}{6} = \frac{4}{3}
+$$
+
+Step 2
+$$
+[E(X)]^2 =  (\frac{4}{5}(\sqrt 2))^2
+$$
+
+$$
+Var(X) = \frac{4}{3} - (\frac{4}{5}(\sqrt 2))^2 = \frac{4}{75}
+$$
+
+
+#### Step 2: application of the ITM
+Apply the ITM to generate (pseudo)-random numbers from this random variable:
+
+**Step 1**  Compute the inverse cdf $F^{−1}_X (x)$ 
+For $0<=x<=k = \sqrt{2}$: cdf:
+$F_X^{-1}(x) = \frac{x^4}{4}$
+
+Set $F_X^{-1}(x) = p$ :
+$$
+\frac{x^4}{4} = p \\
+x^4 = 4p \\
+x = (4p)^{1/4} \\
+
+F_X^{-1}(p) = (4p)^{1/4}
+
+$$
+
+
+and (b) write an R
+function to generate random numbers from X ∼ fX(x) that relies on the ITM.
+```{r}
+itm_method <- function(n){
+  u <- runif(n)
+  (4*u)^(1/4)
+}
+
+```
+
+#### Step 3: double-check your random number generator
+
+```{r}
+set.seed(249124) # 6
+
+X <- itm_method(10000) #7
+
+```
+
+8. Compare the range of the numbers generated at point (7) to the support of X. What
+do you notice?
+
+```{r}
+summary(X)
+```
+
+The support of X is ($0, \sqrt2$) but the range of the sample is (0.11, 1.4). 
+
+9. Compute the mean and variance of the numbers generated at point (7), and compare
+them to the values of E(X) and V ar(X) that you computed at point (3). Are the
+numerical results in agreement with your analytical derivations?
+
+```{r}
+mean(X); var(X)
+```
+analytical: 
+```{r}
+4/3
+4/75
+```
+
+10. Draw a histogram that shows the empirical density of the 10000 random numbers, and
+compare it to fX(x)
+```{r}
+hist(X, prob = TRUE, breaks = 50)
+curve(x^3, add = TRUE, col = "cornflowerblue")
+```
+
+The values generated are close to the curve of $f_X(x)$
+
