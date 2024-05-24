@@ -1,0 +1,5 @@
+\contentsline {chapter}{Preface}{3}{chapter*.2}%
+\contentsline {part}{\numberline {I}Probability}{4}{part.1}%
+\contentsline {section}{Random Variables}{5}{section*.3}%
+\contentsline {chapter}{\numberline {1}Discrete random variables}{7}{chapter.1}%
+\contentsline {subsection}{\numberline {1.0.1}Definitions explained through an example}{7}{subsection.1.0.1}%
