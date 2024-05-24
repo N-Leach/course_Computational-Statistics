@@ -97,39 +97,28 @@ $$
 3.  Compute E(X)
 
 $$
-
 E(X) = \int_{-\infty}^{\infty} x f_X(x) dx \\
-
 E(X) = \int{0}^{k} x \cdot x^3 dx = \int{0}^{k} x^4 dx\\
-
 E(X) = \left[ \frac{x^5}{5} \right]_0^k \\
-
 E(X) = \left[ \frac{x^5}{5} \right]_0^{\sqrt 2} \\
-
 E(X) = \left[ \frac{(\sqrt 2)^5}{5} \right] - 0 \\
-
-E(X) = \frac{1}{5}*(*\sqrt 2)^4 (\sqrt 2) \\
-
+E(X) = \frac{1}{5}(\sqrt 2)^4 (\sqrt 2) \\ 
 E(X) = \frac{4}{5}(\sqrt 2)
-
 $$
 
 3.2 Compute Var(X) $Var(X) = E[X^2] -E[X]^2$
 
-Step 1 
-$$ 
+Step 1
 
-E(X^2) = \int{0}^{k} x^2\cdot x^3 dx = \int{0}^{k} x^5 dx\\
-
+$$
+E(X^2) = \int{0}^{k} x2\cdot x3 dx \\
+= \int{0}^{k} x^5 dx \\
 = \left[ \frac{x^6}{6} \right]_0^k \\
-
 = \left[ \frac{(\sqrt 2)^6}{6} \right] - 0 \\
-
 = \frac{8}{6} = \frac{4}{3} 
 $$
 
-Step 2 $[E(X)]^2 =  (\frac{4}{5}(\sqrt 2))^2$
-
+Step 2 $[E(X)]^2 = (\frac{4}{5}(\sqrt 2))^2$
 
 $$
 Var(X) = \frac{4}{3} - (\frac{4}{5}(\sqrt 2))^2 = \frac{4}{75}
@@ -139,18 +128,15 @@ $$
 
 Apply the ITM to generate (pseudo)-random numbers from this random variable:
 
-**Step 1** Compute the inverse cdf $F^{−1}_X (x)$ 
+**Step 1** Compute the inverse cdf $F^{−1}_X (x)$
 
 For $0<=x<=k = \sqrt{2}$: cdf: $F_X^{-1}(x) = \frac{x^4}{4}$
 
-Set $F_X^{-1}(x) = p$ : 
+Set $F_X^{-1}(x) = p$ :
 
-$$ 
-\frac{x^4}{4} = p \\ 
-x^4 = 4p \\ x = (4p)^{1/4} \\
-
+$$
+\frac{x^4}{4} = p \ x^4 = 4p \ x = (4p)^{1/4} \\
 F_X^{-1}(p) = (4p)^{1/4}
-
 $$
 
 and (b) write an R function to generate random numbers from X ∼ fX(x) that relies on the ITM.
@@ -204,7 +190,7 @@ The values generated are close to the curve of $f_X(x)$
 
 # (lecture 2) Discrete R.V.
 
-#### Example:  binomial distribution
+#### Example: binomial distribution
 
 ```{r}
 n = 7; p = 0.4
@@ -234,25 +220,20 @@ $\Omega = {1, 2, 3, 4}$, $P(X = k) = \frac{k}{10}$ for $\Omega \in k$
 2.  cdf is defined as $F_X(x) = P(X <= k)$ i.e. the sum of probabilities of all the outcomes of k.
 
 $$
-F_X(x) = 
+F_X(x) =
 \begin{cases} 
-0                                           &  x < 1; \\
-\frac{1}{10}                                & 1 \leq x \leq{2} 
+0                                         &  x < 1; \\
+\frac{1}{10}                              & 1 \leq x \leq{2} 
                                                 \text{ i.e.  }P(X=1); \\
-\frac{1}{10}+\frac{2}{10} = \frac{3}{10}    & 2 \leq x \leq{3}; \\
-\frac{6}{10}                                & 3 \leq x \leq{4}; \\
-1                                           &  x <4; \\
-
+\frac{1}{10}+\frac{2}{10} = \frac{3}{10}  & 2 \leq x \leq{3}; \\
+\frac{6}{10}                              & 3 \leq x \leq{4}; \\
+1                                         &  x <4; \\
 \end{cases}
 $$
-##### Applying ITM 
 
--   Draw from a U(0, 1)  
--   Apply the inverse CDF to determine the outcome 
+##### Applying ITM
 
-Suppose we generate u1 = 0.55
-This u is in the interval of $\frac{3}{10}\leq x < \frac{6}{10}$
-The corresponding value of X for this interval is 3
-Therefore $F_X^{-1}(0.55) =3$
+-   Draw from a U(0, 1)\
+-   Apply the inverse CDF to determine the outcome
 
-
+Suppose we generate u1 = 0.55 This u is in the interval of $\frac{3}{10}\leq x < \frac{6}{10}$ The corresponding value of X for this interval is 3 Therefore $F_X^{-1}(0.55) =3$

@@ -336,22 +336,25 @@ F_X(x) =
 <ol start="3" type="1">
 <li>Compute E(X)</li>
 </ol>
-<p>$$</p>
-<p>E(X) = _{-}^{} x f_X(x) dx \</p>
-<p>E(X) = ^{k} x x^3 dx = ^{k} x^4 dx\</p>
-<p>E(X) = _0^k \</p>
-<p>E(X) = _0^{} \</p>
-<p>E(X) = - 0 \</p>
-<p>E(X) = <em>(</em>)^4 () \</p>
-<p>E(X) = ()</p>
-<p>$$</p>
+<p><span class="math display">\[
+E(X) = \int_{-\infty}^{\infty} x f_X(x) dx \\
+E(X) = \int{0}^{k} x \cdot x^3 dx = \int{0}^{k} x^4 dx\\
+E(X) = \left[ \frac{x^5}{5} \right]_0^k \\
+E(X) = \left[ \frac{x^5}{5} \right]_0^{\sqrt 2} \\
+E(X) = \left[ \frac{(\sqrt 2)^5}{5} \right] - 0 \\
+E(X) = \frac{1}{5}(\sqrt 2)^4 (\sqrt 2) \\
+E(X) = \frac{4}{5}(\sqrt 2)
+\]</span></p>
 <p>3.2 Compute Var(X) <span class="math inline">\(Var(X) = E[X^2] -E[X]^2\)</span></p>
-<p>Step 1 $$</p>
-<p>E(X^2) = ^{k} x<sup>2x</sup>3 dx = ^{k} x^5 dx\</p>
-<p>= _0^k \</p>
-<p>= - 0 \</p>
-<p>= = $$</p>
-<p>Step 2 <span class="math inline">\([E(X)]^2 =  (\frac{4}{5}(\sqrt 2))^2\)</span></p>
+<p>Step 1</p>
+<p><span class="math display">\[
+E(X^2) = \int{0}^{k} x2\cdot x3 dx \\
+= \int{0}^{k} x^5 dx \\
+= \left[ \frac{x^6}{6} \right]_0^k \\
+= \left[ \frac{(\sqrt 2)^6}{6} \right] - 0 \\
+= \frac{8}{6} = \frac{4}{3}
+\]</span></p>
+<p>Step 2 <span class="math inline">\([E(X)]^2 = (\frac{4}{5}(\sqrt 2))^2\)</span></p>
 <p><span class="math display">\[
 Var(X) = \frac{4}{3} - (\frac{4}{5}(\sqrt 2))^2 = \frac{4}{75}
 \]</span></p>
@@ -362,9 +365,10 @@ Var(X) = \frac{4}{3} - (\frac{4}{5}(\sqrt 2))^2 = \frac{4}{75}
 <p><strong>Step 1</strong> Compute the inverse cdf <span class="math inline">\(F^{−1}_X (x)\)</span></p>
 <p>For <span class="math inline">\(0&lt;=x&lt;=k = \sqrt{2}\)</span>: cdf: <span class="math inline">\(F_X^{-1}(x) = \frac{x^4}{4}\)</span></p>
 <p>Set <span class="math inline">\(F_X^{-1}(x) = p\)</span> :</p>
-<p>$$ = p \ x^4 = 4p \ x = (4p)^{1/4} \</p>
-<p>F_X^{-1}(p) = (4p)^{1/4}</p>
-<p>$$</p>
+<p><span class="math display">\[
+\frac{x^4}{4} = p \ x^4 = 4p \ x = (4p)^{1/4} \\
+F_X^{-1}(p) = (4p)^{1/4}
+\]</span></p>
 <p>and (b) write an R function to generate random numbers from X ∼ fX(x) that relies on the ITM.</p>
 </section>
 <section id="step-3-double-check-your-random-number-generator" class="level4">
@@ -446,17 +450,19 @@ Var(X) = \frac{4}{3} - (\frac{4}{5}(\sqrt 2))^2 = \frac{4}{75}
 <li><p>pdf: <span class="math inline">\(P(X = k) = \frac{k}{10}\)</span> Where k can be 1,…4</p></li>
 <li><p>cdf is defined as <span class="math inline">\(F_X(x) = P(X &lt;= k)\)</span> i.e.&nbsp;the sum of probabilities of all the outcomes of k.</p></li>
 </ol>
-$$ F_X(x) =
-<span class="math display">\[\begin{cases}
-0                                           &amp;  x &lt; 1; \\
-\frac{1}{10}                                &amp; 1 \leq x \leq{2}
+<p><span class="math display">\[
+F_X(x) =
+\begin{cases}
+0                                         &amp;  x &lt; 1; \\
+\frac{1}{10}                              &amp; 1 \leq x \leq{2}
                                                 \text{ i.e.  }P(X=1); \\
-\frac{1}{10}+\frac{2}{10} = \frac{3}{10}    &amp; 2 \leq x \leq{3}; \\
-\frac{6}{10}                                &amp; 3 \leq x \leq{4}; \\
-1                                           &amp;  x &lt;4; \\
-
-\end{cases}\]</span>
-<p>$$ ##### Applying ITM</p>
+\frac{1}{10}+\frac{2}{10} = \frac{3}{10}  &amp; 2 \leq x \leq{3}; \\
+\frac{6}{10}                              &amp; 3 \leq x \leq{4}; \\
+1                                         &amp;  x &lt;4; \\
+\end{cases}
+\]</span></p>
+<section id="applying-itm" class="level5">
+<h5 class="anchored" data-anchor-id="applying-itm">Applying ITM</h5>
 <ul>
 <li>Draw from a U(0, 1)<br>
 </li>
@@ -465,6 +471,7 @@ $$ F_X(x) =
 <p>Suppose we generate u1 = 0.55 This u is in the interval of <span class="math inline">\(\frac{3}{10}\leq x &lt; \frac{6}{10}\)</span> The corresponding value of X for this interval is 3 Therefore <span class="math inline">\(F_X^{-1}(0.55) =3\)</span></p>
 
 
+</section>
 </section>
 </section>
 
