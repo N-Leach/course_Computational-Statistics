@@ -18,9 +18,9 @@ book:
         - contRV.qmd
     - part: generatingRV.qmd
       chapters:
-        - mcrng.qmd
-        - itm.qmd
-        
+        - methods\mcrng.qmd
+        - methods\itm.qmd
+        - methods\arm.qmd
         
   appendices: 
     - howto.qmd

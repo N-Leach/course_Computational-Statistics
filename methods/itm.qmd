@@ -66,11 +66,13 @@ X \~ continuous random variable with density $f_X(x) = x^3$ for 0\<=x\<=k
 -   integrate the pdf
 
 $$
-\int_{0}^{k} x^3 dx \\
-\left[ \frac{x^4}{4} \right]_0^k \\ 
-\frac{k^4}{4}- 0 = 1 \\
-k^4 = 1*4 \\
-k = \sqrt{2}
+\begin{aligned}
+& \int_{0}^{k} x^3 dx \\
+& \left[ \frac{x^4}{4} \right]_0^k \\ 
+& \frac{k^4}{4}- 0 = 1 \\
+& k^4 = 1*4 \\
+& k = \sqrt{2}
+\end{aligned}
 $$
 
 2.  Compute the cdf FX(x)

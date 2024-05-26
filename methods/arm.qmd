@@ -1,0 +1,140 @@
+# Acceptance-Rejection Method (ARM)
+
+::: callout-tip
+### Requirements
+
+1.  an auxiliary random variable Y with pdf gY from which you know
+    how to generate random numbers
+
+2.   $g_Y$ must be such that:
+
+    $$
+    \exists c : r(t) = \frac{f_X(t)}{g_Y(t)} \leq c \, \forall t \in \Omega_X
+    $$
+
+    i.e.: There exists a constant $c$ such that for all values of $t$ in the support of X ($\Omega_X$), the ratio of the pdf of X to the pdf of Y is less than or equal $c$.
+
+(2) is satisfied if $\Omega_X \subseteq \Omega_Y$ and r(t) is bounded from above.
+:::
+
+#### 
+
+::: callout-tip
+### Steps
+
+1.  check that $\Omega_X \subseteq \Omega_Y$: i.e. the support of the r.v. X is a subset of the support of the r.v. Y: the range of possible values for X is contained within the possible values for Y.
+
+2.   identify $c : \frac{f_X(t)}{g_Y(t)} \leq c \, \forall t \in \Omega_X$
+
+3.  draw y\~$g_Y(y)$ and u\~ U(0,1)
+
+4.  if $f_X (y) > c \cdot u \cdot g_Y (y)$, set x = y (= \"accept\" y); otherwise repeat steps (3-4) (= \"reject\" y)
+
+**Important**
+
+-   probability to accept u is $\frac{1}{c}$
+
+-   on average you need ***nc iterations*** to generate ***n*** random numbers: smaller is better
+:::
+
+### Example: beta distribution 
+
+To sample from $X \sim \text{Beta}(\alpha = 2, \beta = 2)$
+
+$$
+f_X(x) = 6x(1 - x), \quad 0 < x < 1
+$$
+
+We can use $Y \sim U(0,1)$ as:
+
+1.  $\Omega_X \subseteq \Omega_Y$: X is within \[0,1\]
+
+2.  Ratio $r(t) : \frac{f_X(t)}{g_Y(t)}$
+
+    pdf for $Y \sim U(0,1)$ is $g_Y(t) = 1$
+
+    $r(t) : \frac{f_X(t)}{g_Y(t)} = \frac{6t(1-t)}{1} = 6t(1-t)$
+
+    Find the maximum for r(t): i.e. that r(t) is bounded by a constant c for all t in the interval (0,1)
+
+    -\> take the derivative of r(t) and set to zero:
+
+    $$
+    \begin{aligned}
+    & \frac{d}{dt} [6t(1-t)]  = 0 \\ 
+    & \frac{d}{dt} 6t -6t^2 +(t*-1) \\
+    & 6(1-2t)
+    \end{aligned}
+    $$
+
+    $6(1-2t) = 0$ so $t \leq \frac{1}{2}$
+
+    i.e. r(t) has a global maximum at t = 1/2
+
+    $r(t = \frac{1}{2}) =6 \cdot \frac{1}{2} \cdot ( 1- \frac{1}{2}) = \frac{3}{2}$
+
+3.  jsfhjfh
+
+```{r}
+set.seed(2)
+n = 10000
+n.accepted = n.iter = 0
+x = numeric(length = n)
+
+while (n.accepted < n) {
+  n.iter = n.iter +1
+  # drawing from g_Y
+  y = runif(1)
+  #
+  u = runif(1)
+  if (6*y*(1-y) > 3/2 *u*1){
+    n.accepted = n.accepted +1
+    x[n.accepted] = y
+  }
+}
+n.accepted; n.iter
+```
+
+```{r}
+hist(x, 50, prob = T, main = '', col = 'steelblue2')
+curve(6*x*(1-x), add = T, col = 'red', lwd = 2)
+```
+
+### Example 
+
+students 4 years to complete: 2 years in students take an assessment. The score of the assessment $S = (- \infty, \infty)$. The pdf of the scores: $p(s) = \frac{f(s)}{NC}$. We don't know p(s), but we do know the numerator f(s) (NC : normalizing constant).
+
+$$
+NC = \int_{- \infty}^{\infty} f(s) ds \\
+$$
+
+Step 1
+
+1.  Choose g(s)) which is close to p(s).
+    -   in this case a normal distribution. We need to insure that the g(s) is always larger than f(s). So we need to scale g(s) up : $M \cdot g(s)$
+2.   Accept w/ prob $\frac{f(s)}{M \cdot g(s)}$
+
+```{r}
+set.seed(2)
+n = 10000
+n.accepted = n.iter = 0
+x = numeric(length = n)
+
+while (n.accepted < n) {
+  n.iter = n.iter +1
+  # drawing from g_Y
+  y = rnorm(1)
+  #
+  u = rnorm(1)
+  if (6*y*(1-y) > 3/2 *u*1){
+    n.accepted = n.accepted +1
+    x[n.accepted] = y
+  }
+}
+n.accepted; n.iter
+```
+
+```{r}
+hist(x, 50, prob = T, main = '', col = 'steelblue2')
+curve(6*x*(1-x), add = T, col = 'red', lwd = 2)
+```
