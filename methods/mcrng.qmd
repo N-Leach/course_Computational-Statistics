@@ -1,21 +1,14 @@
 # Multiplicative Congruential Random Number Generator (MCRNG)
 
-(from:  Braun and Murdoch's book "A first course in statistical programming with R" 2nd edition (2016): Section 5.2)
+(from: Braun and Murdoch's book "A first course in statistical programming with R" 2nd edition (2016): Section 5.2)
 
-## Monte Carlo Simulation 
+## Monte Carlo Simulation
 
-to approximate the mean $\mu = E(x)$: 
-generate m independent and identically distributed (i.i.d.) values of X and use the 
-sample mean ($\bar{X} = \frac{\Sigma X_i}{m}$) : good approximation for large m (law of large numbers)
-the distribution of $\bar{X}$ can be approximated by a normal distribution the mean 
-$\mu$ and variance $\sigma ^2 /m$ -> central limit theorem 
+to approximate the mean $\mu = E(x)$: generate m independent and identically distributed (i.i.d.) values of X and use the sample mean ($\bar{X} = \frac{\Sigma X_i}{m}$) : good approximation for large m (law of large numbers) the distribution of $\bar{X}$ can be approximated by a normal distribution the mean $\mu$ and variance $\sigma ^2 /m$ -\> central limit theorem
 
+A multiplicative congruential random number generator (MCRNG) is an algorithm that can be used to draw numbers from $X \sim U(0, 1)$
 
-A multiplicative congruential random number generator (MCRNG) is an algorithm 
-that can be used to draw numbers from $X \sim U(0, 1)$
-
-m large integer, b is another integer where m>b
-$x_0$ integer between 1 and m <- seed
+m large integer, b is another integer where m\>b $x_0$ integer between 1 and m \<- seed
 
 ```{r}
 m <- 7
@@ -28,8 +21,7 @@ u2 <- x2/m
 
 ```
 
-formula 
-$x_n = bx_{n-1}$(mod m), $ u_n = x_n / m$
+formula $x_n = bx_{n-1}$(mod m), \$ u_n = x_n / m\$
 
 ```{r}
 mcrng <- function(m = 30269, b = 171, x0 = 27218, n = 10){
@@ -46,20 +38,21 @@ mcrng <- function(m = 30269, b = 171, x0 = 27218, n = 10){
 ex1 <- mcrng(m = 30307, b = 172, n = 20, x0 = 17218)
 ex1
 ```
-- choose m so that it is not divizable by b 
+
+-   choose m so that it is not divizable by b
 
 ex 4
+
 ```{r}
 set.seed(19908)
 U <- runif(n =1000)
 #(a)
 (ex4a <- c(mean(U), var(U), sd(U)))
 ```
+
 (b) Compare your results with the true mean, variance, and standard deviation
 
-mean = median of uniform distribution is 1/2(a+b)
-variance: $1/12(b-a)^2$ = 1/12
-sd = sqrt(var)
+mean = median of uniform distribution is 1/2(a+b) variance: $1/12(b-a)^2$ = 1/12 sd = sqrt(var)
 
 ```{r}
 0.5
@@ -70,10 +63,8 @@ sqrt(1/12)
 answer the same to 2d.p
 
 #### ex 5
-5 Simulate 10000 independent observations on a uniformly distributed
-random variable on the interval [3.7, 5.8].
-(a) Estimate the mean, variance, and standard deviation of such a uniform random variable and compare your estimates with the true
-values.
+
+5 Simulate 10000 independent observations on a uniformly distributed random variable on the interval \[3.7, 5.8\]. (a) Estimate the mean, variance, and standard deviation of such a uniform random variable and compare your estimates with the true values.
 
 ```{r}
 u <- runif(1000, min = 3.7, max = 5.8)
@@ -95,8 +86,9 @@ sqrt(1/12 * (5.8- 3.7)^2)
 sd(u)
 
 ```
-(b) Estimate the probability that such a random variable is greater than
-4.0. Compare with the true value.
+
+(b) Estimate the probability that such a random variable is greater than 4.0. Compare with the true value.
+
 ```{r}
 sum(u>4)/ 1000
 
@@ -104,15 +96,14 @@ sum(u>4)/ 1000
 
 ```
 
-
-
-### Steps 
+### Steps
 
 -   draw a sample $x$ with replacement from a discrete uniform with $\Omega = \{1, 2, ..., k\}$ where $k \to \infty$, then set $u = \frac{x}{k}$
 
 -   obvious issue: $k \to \infty$? ($\Rightarrow$ choose $k$ based on desired level of accuracy)
 
 #### Lecture 1 practical
+
 ```{r}
 random_mcrng <- function(m, b, x0, n){
   x <- numeric(n+1)
@@ -128,13 +119,7 @@ U<- random_mcrng(x0 = 207, m = 1307, b = 53, n=10000)
 hist(U)
 ```
 
-The pseudo-randomly generated numbers u1, . . . , un are approximately evenly distributed over the interval [0, 1]. Also, the sample mean and sample variance of the generated numbers are very close to the theoretical
-mean and variance of a U(0, 1)-distributed random variable, which are 1/2
-and 1
-12 = 0.083, respectively. This
-suggests that the MCRNG algorithm that we implemented is doing a good job at generating U(0, 1)-distributed
-random numbers.
-
+The pseudo-randomly generated numbers u1, . . . , un are approximately evenly distributed over the interval \[0, 1\]. Also, the sample mean and sample variance of the generated numbers are very close to the theoretical mean and variance of a U(0, 1)-distributed random variable, which are 1/2 and 1 12 = 0.083, respectively. This suggests that the MCRNG algorithm that we implemented is doing a good job at generating U(0, 1)-distributed random numbers.
 
 ## Simulation of other random variables
 
@@ -142,13 +127,7 @@ from book
 
 ### Bernoulli random variables
 
-Write an R function which simulates the outcomes of a student guessing
-at a True–False test consisting of n questions.
-(a) Use the function to simulate one student guessing the answers to a
-test with 10 questions; calculate the number of correct answers for
-this student.
-(b) Simulate the number of correct answers for a student who guesses
-at a test with 1000 questions.
+Write an R function which simulates the outcomes of a student guessing at a True--False test consisting of n questions. (a) Use the function to simulate one student guessing the answers to a test with 10 questions; calculate the number of correct answers for this student. (b) Simulate the number of correct answers for a student who guesses at a test with 1000 questions.
 
 ```{r}
 set.seed(1234)
@@ -167,11 +146,7 @@ guessing(n=10)
 guessing(0.5, n=1000)
 ```
 
-3 Write an R function which simulates 500 light bulbs, each of which has
-probability 0.99 of working. Using simulation, estimate the expected
-value and variance of the random variable X, which is 1 if the light bulb
-works and 0 if the light bulb does not work. What are the theoretical
-values?
+3 Write an R function which simulates 500 light bulbs, each of which has probability 0.99 of working. Using simulation, estimate the expected value and variance of the random variable X, which is 1 if the light bulb works and 0 if the light bulb does not work. What are the theoretical values?
 
 ```{r}
 functional <- function(success_probability = 0.99, n){
@@ -187,20 +162,17 @@ var(X)
 
 ```
 
-theoretical values: expectation per bulb = 0.99 and variance is = p*q (prob of success 
-* prop of fail) = 0.99*0.01
-
+theoretical values: expectation per bulb = 0.99 and variance is = p*q (prob of success* prop of fail) = 0.99\*0.01
 
 ### Binomial random variables
 
 Compute the probability of getting four heads in six tosses of a fair coin
+
 ```{r}
 dbinom(x = 4, size = 6, prob = 0.5)
 ```
-1 Suppose the proportion defective is 0.15 for a manufacturing operation.
-Simulate the number of defectives for each hour of a 24-hour period,
-assuming 25 units are produced each hour. Check whether the number of
-defectives ever exceeds 5. Repeat, assuming p = 0.2 and then p = 0.25
+
+1 Suppose the proportion defective is 0.15 for a manufacturing operation. Simulate the number of defectives for each hour of a 24-hour period, assuming 25 units are produced each hour. Check whether the number of defectives ever exceeds 5. Repeat, assuming p = 0.2 and then p = 0.25
 
 ```{r}
 no.defectives <- rbinom(n = 24, size= 25, prob = 0.15)
@@ -211,14 +183,15 @@ no.defectives <- rbinom(24, 25, prob = 0.25)
 any(no.defectives>5)
 ```
 
-Use simulation to estimate the mean and variance of a binomial random variable with n = 18 and p = 0.76. Compare with the theoretical
-values.
+Use simulation to estimate the mean and variance of a binomial random variable with n = 18 and p = 0.76. Compare with the theoretical values.
+
 ```{r}
 X <- rbinom(n = 1000, p = 0.76, size = 18)
 mean(X); var(X)
 ```
 
 theoretical
+
 ```{r}
 #n*p
 18*0.76
@@ -227,9 +200,8 @@ theoretical
 
 ```
 
-The following function simulates binomial pseudorandom numbers
-by summing up the corresponding independent Bernoulli random
-variables.
+The following function simulates binomial pseudorandom numbers by summing up the corresponding independent Bernoulli random variables.
+
 ```{r}
 #Generate binomial pseudorandom variables by summing Bernoulli
 ranbin2 <- function(n, size, prob) {
@@ -245,7 +217,3 @@ ranbin2 <- function(n, size, prob) {
 ```
 
 ### Poisson random variables
-
-
-
-

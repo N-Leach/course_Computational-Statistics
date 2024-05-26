@@ -102,17 +102,44 @@ curve(6*x*(1-x), add = T, col = 'red', lwd = 2)
 
 ### Example 
 
-students 4 years to complete: 2 years in students take an assessment. The score of the assessment $S = (- \infty, \infty)$. The pdf of the scores: $p(s) = \frac{f(s)}{NC}$. We don't know p(s), but we do know the numerator f(s) (NC : normalizing constant).
+Suppose we have the following pdf with support $(- \infty, \infty)$.
 
 $$
-NC = \int_{- \infty}^{\infty} f(s) ds \\
+f_X(x) =
+\begin{cases} 
+e^{- \frac{s}{2}} + e^{-s^2} &  \text{ if } s < 0; \\
+e^{ \frac{s}{3}} + e^{s^3}   &  \text{ if } s > 0; \\
+\end{cases}
 $$
 
-Step 1
+**Steps**
 
-1.  Choose g(s)) which is close to p(s).
-    -   in this case a normal distribution. We need to insure that the g(s) is always larger than f(s). So we need to scale g(s) up : $M \cdot g(s)$
-2.   Accept w/ prob $\frac{f(s)}{M \cdot g(s)}$
+1.  Choose g(s) which is close to the pdf.
+
+    -   in this case a normal distribution: $Y \sim N(0,1)$ support $(- \infty, \infty)$.
+
+2.   Compute r(s)
+
+    since $Y \sim N(0,1)$ $g_Y = \frac{1}{ \sqrt{2 \pi}} e^{- \frac{s^2}{2}}$
+
+    -   for s\<0:
+
+        $$
+        r(t)= \frac {e^{- \frac{s}{2}} + e^{-s^2}}{\frac{1}{ \sqrt{2 \pi}} e^{- \frac{s^2}{2}}}
+        $$
+
+        $$
+        r(t)= 
+        \sqrt{2 \pi} \cdot (
+        e^{- \frac{s}{2} } \cdot e^{- \frac{s^2}{2}} 
+        + 
+        e^{-s^2} \cdot  e^{- \frac{s^2}{2}} 
+        )
+        $$
+
+    -   for s\>0
+
+Doing something wrong here I think
 
 ```{r}
 set.seed(2)
@@ -120,21 +147,136 @@ n = 10000
 n.accepted = n.iter = 0
 x = numeric(length = n)
 
+# Define the target density function f_X(s)
+f_X <- function(s) {
+  if (s < 0) {
+    return(exp(-s/2) + exp(-s^2))
+  } else {
+    return(exp(s/3) + exp(s^3))
+  }
+}
+
+# Define the proposal density function g_Y(s)
+g_Y <- function(s) {
+  return(dnorm(s))
+}
+
+# Maximum value of the ratio f_X(s) / g_Y(s)
+c = 50
+
 while (n.accepted < n) {
-  n.iter = n.iter +1
-  # drawing from g_Y
+  n.iter = n.iter + 1
+  # Drawing from g_Y, here using the standard normal distribution
   y = rnorm(1)
-  #
-  u = rnorm(1)
-  if (6*y*(1-y) > 3/2 *u*1){
-    n.accepted = n.accepted +1
+  u = runif(1)
+  if (f_X(y) / (c * g_Y(y)) > u) {
+    n.accepted = n.accepted + 1
     x[n.accepted] = y
   }
 }
-n.accepted; n.iter
+
+n.accepted
+n.iter
+
 ```
 
 ```{r}
-hist(x, 50, prob = T, main = '', col = 'steelblue2')
-curve(6*x*(1-x), add = T, col = 'red', lwd = 2)
+hist(x, 50, prob = T, main = '', col = 'steelblue2', ylim = c(0,1))
+curve((exp(-x/2) + exp(-x^2)), add = T, col = 'red', lwd = 2)
+curve((exp(x/3) + exp(x^3)), add = T, col = 'red', lwd = 2)
 ```
+
+
+
+### Exercise from practical 
+
+The half-normal (HN hereafter) distribution 
+1. mode of the distribution = the mean $E(\sigma \sqrt{\frac{2}{\pi}})$
+2. draw 
+```{r}
+# function for the pdf
+f_X <- function(x){
+  sig = 1
+  ifelse(x>= 0,
+         # for x >= 0 given pdf
+         (1/sig)*(sqrt(2/pi) * exp(-(x^2)/2)), 
+         #else 
+         0 )
+}
+
+curve(dexp(x, rate = 1), col = 'green', lwd = 2, xlim = c(-5, 5))
+text(0.3, 0.9, "W", col= "green")
+curve(dnorm(x, 0,1), col = 'blue', lwd = 2, add = T)
+text(1, 0.3, "Z", col= "blue")
+curve(f_X(x), from = -3, to = 3, col= "red", lwd = 2, add = T)
+text(1.1, 0.6, "HN", col= "red")
+```
+
+For the rest of the exercise, set $\sigma = 1$. In the following points, you will use the acceptance rejection method (ARM) to sample from $X \sim HN(\sigma = 1)$.
+
+Would W be a suitable auxiliary distribution that can be used to sample from X using
+the ARM? Why? How about Z?
+
+Both W and Z would be suitable as:
+$\Omega_{HN} \subseteq \Omega_W$  and 
+$\Omega_{HN} \subseteq \Omega_Z$
+ 
+
+
+# 5. methods to sample from convolutions and from mixture models
+
+## Convolutions 
+
+```{r}
+# Example sum of Poisson random variable sample
+
+n = 1e5; p = 5
+set.seed(2)
+all.x = matrix(rpois(n = n*p, lambda = 4),
+               nrow = n, ncol = p)
+colnames(all.x) = paste('X', 1:5, sep = '')
+head(all.x, 2)
+s = apply(all.x,1,sum)
+summary(s); var(s)
+
+hist(s,50,prob = T, main = '', col = 'steelblue2')
+
+```
+
+## Mixture models 
+
+```{r}
+# Example Height
+
+set.seed(2)
+n = 1e5; height = rep(NA,n)
+gender = sample(1:2, size = n, replace = T)
+
+n.female = sum(gender ==1)
+height[which(gender==1)] = rnorm(n = n.female, mean = 1.69, sd = 0.04)
+height[which(gender ==2)] = rnorm(n = n-n.female, mean = 1.83, sd = 0.06)
+
+summary(height)
+
+hist(height, 50, prob = T, main = '', col = 'steelblue2', ylim = c(0,10))
+curve(dnorm(x, mean = 1.69, sd = 0.04), add = T, col = 'red', lwd = 2)
+curve(dnorm(x, mean = 1.83, sd = 0.06), add = T, col = 'green', lwd = 2)
+
+height2 = numeric(n)
+height2[which(gender == 1)] = rnorm(n = n.female,
+                                    mean = 1.72, sd = 0.04)
+height2[which(gender == 2)] = rnorm(n = n - n.female,
+                                    mean = 1.78, sd = 0.06)
+hist(height2, 50, prob = T, main = '',
+     col = 'steelblue2', ylim = c(0, 10))
+curve(dnorm(x, mean = 1.72, sd = 0.04),
+      add = T, col = 'red', lwd = 2)
+curve(dnorm(x, mean = 1.78, sd = 0.06),
+      add = T, col = 'blue', lwd = 2)
+
+```
+
+
+
+
+
